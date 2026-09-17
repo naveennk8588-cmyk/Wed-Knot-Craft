@@ -3,6 +3,7 @@ Django settings for WeddingInvitation project.
 """
 
 from pathlib import Path
+import os
 
 
 # =====================================================
@@ -16,11 +17,30 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY
 # =====================================================
 
-SECRET_KEY = "django-insecure-ae3xck+tn75&$@i6^(!br9#aguol1odp=u%2+&_1m(*%)+kl_k"
+SECRET_KEY = os.environ.get(
+    "DJANGO_SECRET_KEY",
+    "django-insecure-ae3xck+tn75&$@i6^(!br9#aguol1odp=u%2+&_1m(*%)+kl_k"
+)
 
-DEBUG = True
+# Local = True
+# Render = set DEBUG=False in Environment Variables
+DEBUG = os.environ.get("DEBUG", "True").lower() == "true"
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    "wed-knot-craft.onrender.com",
+]
+
+
+# =====================================================
+# CSRF
+# =====================================================
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://wed-knot-craft.onrender.com",
+]
 
 
 # =====================================================
@@ -176,6 +196,8 @@ USE_TZ = True
 # =====================================================
 
 STATIC_URL = "static/"
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
