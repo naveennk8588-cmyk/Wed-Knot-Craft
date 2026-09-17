@@ -1,0 +1,909 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Scroll Invitations | Wed Knot Craft{% endblock %}
+
+{% block extra_css %}
+<style>
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.scroll-hero {
+    min-height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            135deg,
+            #e6e6fa,
+            #ffe5b4
+        );
+}
+
+.scroll-hero::before {
+    content: "";
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: rgba(255,171,13,.13);
+    left: -100px;
+    top: -120px;
+}
+
+.scroll-hero::after {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.5);
+    right: -100px;
+    bottom: -150px;
+}
+
+.scroll-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+}
+
+.scroll-hero-content span {
+    color: #b77c00;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 3px;
+}
+
+.scroll-hero-content h1 {
+    font-size: 40px;
+    font-weight: 600;
+    margin: 10px 0 15px;
+}
+
+.scroll-hero-content p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+
+/* =====================================================
+   BREADCRUMB
+===================================================== */
+
+.breadcrumb {
+    padding: 22px 0;
+    font-size: 12px;
+    color: #777;
+}
+
+.breadcrumb a {
+    color: #222;
+}
+
+.breadcrumb span {
+    margin: 0 8px;
+    color: #aaa;
+}
+
+
+/* =====================================================
+   SECTION
+===================================================== */
+
+.scroll-section {
+    padding: 20px 0 85px;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-heading span {
+    color: #b77c00;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.section-heading h2 {
+    font-size: 28px;
+    font-weight: 600;
+    margin: 8px 0;
+}
+
+.section-heading p {
+    color: #777;
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   SCROLL GRID
+===================================================== */
+
+.scroll-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.scroll-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: .35s ease;
+}
+
+.scroll-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 18px 35px rgba(0,0,0,.11);
+}
+
+
+/* =====================================================
+   IMAGE
+===================================================== */
+
+.scroll-image {
+    height: 390px;
+    background: #f5f0e8;
+    position: relative;
+    overflow: hidden;
+}
+
+.scroll-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: .5s ease;
+}
+
+.scroll-card:hover .scroll-image img {
+    transform: scale(1.05);
+}
+
+
+/* =====================================================
+   BADGE
+===================================================== */
+
+.scroll-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    padding: 6px 11px;
+    background: #ffab0d;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    z-index: 2;
+}
+
+
+/* =====================================================
+   WISHLIST
+===================================================== */
+
+.scroll-wishlist {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 3px 12px rgba(0,0,0,.12);
+    z-index: 2;
+}
+
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.scroll-content {
+    padding: 21px;
+    text-align: center;
+}
+
+.scroll-content h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+.scroll-content p {
+    color: #777;
+    font-size: 12px;
+    line-height: 1.7;
+    min-height: 42px;
+    margin-bottom: 15px;
+}
+
+
+/* =====================================================
+   PRICE
+===================================================== */
+
+.scroll-price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 17px;
+}
+
+.scroll-price .current {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.scroll-price .old {
+    color: #999;
+    font-size: 11px;
+    text-decoration: line-through;
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.scroll-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 135px;
+    padding: 10px 18px;
+    background: #ffab0d;
+    border: 1px solid #ffab0d;
+    border-radius: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.scroll-btn i {
+    margin-left: 7px;
+}
+
+.scroll-btn:hover {
+    background: #e49a00;
+    border-color: #e49a00;
+    transform: translateY(-2px);
+}
+
+
+/* =====================================================
+   WHY SCROLL
+===================================================== */
+
+.scroll-benefits {
+    margin-top: 70px;
+    padding: 40px 25px;
+    background: #e6e6fa;
+    border-radius: 8px;
+}
+
+.scroll-benefits h2 {
+    text-align: center;
+    font-size: 23px;
+    margin-bottom: 30px;
+}
+
+.benefit-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.benefit {
+    text-align: center;
+}
+
+.benefit i {
+    color: #b77c00;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.benefit h4 {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.benefit p {
+    color: #777;
+    font-size: 10px;
+    line-height: 1.5;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1000px) {
+
+    .scroll-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .benefit-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 750px) {
+
+    .scroll-hero-content h1 {
+        font-size: 32px;
+    }
+
+    .scroll-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+@media (max-width: 550px) {
+
+    .scroll-hero {
+        min-height: 280px;
+    }
+
+    .scroll-hero-content h1 {
+        font-size: 27px;
+    }
+
+    .scroll-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .scroll-image {
+        height: 360px;
+    }
+
+    .benefit-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="scroll-hero">
+
+    <div class="scroll-hero-content">
+
+        <span>
+            TRADITIONAL • ELEGANT • TIMELESS
+        </span>
+
+        <h1>
+            Scroll Invitations
+        </h1>
+
+        <p>
+            Make your celebration unforgettable with
+            beautifully crafted scroll invitations inspired
+            by timeless Indian wedding traditions.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     BREADCRUMB
+===================================================== -->
+
+<div class="container">
+
+    <div class="breadcrumb">
+
+        <a href="{% url 'home' %}">
+            Home
+        </a>
+
+        <span>/</span>
+
+        Scroll Invitations
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     SCROLL COLLECTION
+===================================================== -->
+
+<section class="scroll-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span>
+                ROYAL SCROLL COLLECTION
+            </span>
+
+            <h2>
+                Elegant Scroll Wedding Invitations
+            </h2>
+
+            <p>
+                Traditional scroll designs with a luxurious
+                touch for your special occasion.
+            </p>
+
+        </div>
+
+
+        <div class="scroll-grid">
+
+
+            <!-- CARD 1 -->
+
+            <article class="scroll-card">
+
+                <div class="scroll-image">
+
+                    <span class="scroll-badge">
+                        Popular
+                    </span>
+
+                    <img
+                        src="{% static 'images/theme-palace.jpg' %}"
+                        alt="Royal Scroll Invitation"
+                    >
+
+                    <a
+                        href="#"
+                        class="scroll-wishlist"
+                    >
+                        <i class="fa-regular fa-heart"></i>
+                    </a>
+
+                </div>
+
+
+                <div class="scroll-content">
+
+                    <h3>
+                        Royal Palace Scroll
+                    </h3>
+
+                    <p>
+                        A grand royal-inspired scroll invitation
+                        for a luxurious wedding celebration.
+                    </p>
+
+                    <div class="scroll-price">
+
+                        <span class="current">
+                            ₹899
+                        </span>
+
+                        <span class="old">
+                            ₹1,199
+                        </span>
+
+                    </div>
+
+                    <a href="#" class="scroll-btn">
+                        View Invitation
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- CARD 2 -->
+
+            <article class="scroll-card">
+
+                <div class="scroll-image">
+
+                    <span class="scroll-badge">
+                        Premium
+                    </span>
+
+                    <img
+                        src="{% static 'images/exclusive-luxury.jpg' %}"
+                        alt="Luxury Golden Scroll Invitation"
+                    >
+
+                    <a
+                        href="#"
+                        class="scroll-wishlist"
+                    >
+                        <i class="fa-regular fa-heart"></i>
+                    </a>
+
+                </div>
+
+
+                <div class="scroll-content">
+
+                    <h3>
+                        Golden Luxury Scroll
+                    </h3>
+
+                    <p>
+                        Premium golden details designed for
+                        an elegant and unforgettable celebration.
+                    </p>
+
+                    <div class="scroll-price">
+
+                        <span class="current">
+                            ₹999
+                        </span>
+
+                        <span class="old">
+                            ₹1,399
+                        </span>
+
+                    </div>
+
+                    <a href="#" class="scroll-btn">
+                        View Invitation
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- CARD 3 -->
+
+            <article class="scroll-card">
+
+                <div class="scroll-image">
+
+                    <span class="scroll-badge">
+                        New
+                    </span>
+
+                    <img
+                        src="{% static 'images/exclusive-hindu.jpg' %}"
+                        alt="Traditional Hindu Scroll Invitation"
+                    >
+
+                    <a
+                        href="#"
+                        class="scroll-wishlist"
+                    >
+                        <i class="fa-regular fa-heart"></i>
+                    </a>
+
+                </div>
+
+
+                <div class="scroll-content">
+
+                    <h3>
+                        Traditional Hindu Scroll
+                    </h3>
+
+                    <p>
+                        Rich traditional styling inspired by
+                        Indian wedding celebrations.
+                    </p>
+
+                    <div class="scroll-price">
+
+                        <span class="current">
+                            ₹849
+                        </span>
+
+                        <span class="old">
+                            ₹1,099
+                        </span>
+
+                    </div>
+
+                    <a href="#" class="scroll-btn">
+                        View Invitation
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- CARD 4 -->
+
+            <article class="scroll-card">
+
+                <div class="scroll-image">
+
+                    <img
+                        src="{% static 'images/exclusive-floral.jpg' %}"
+                        alt="Floral Scroll Invitation"
+                    >
+
+                    <a
+                        href="#"
+                        class="scroll-wishlist"
+                    >
+                        <i class="fa-regular fa-heart"></i>
+                    </a>
+
+                </div>
+
+
+                <div class="scroll-content">
+
+                    <h3>
+                        Floral Scroll Invitation
+                    </h3>
+
+                    <p>
+                        Romantic floral artwork combined with
+                        an elegant traditional scroll style.
+                    </p>
+
+                    <div class="scroll-price">
+
+                        <span class="current">
+                            ₹799
+                        </span>
+
+                        <span class="old">
+                            ₹999
+                        </span>
+
+                    </div>
+
+                    <a href="#" class="scroll-btn">
+                        View Invitation
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- CARD 5 -->
+
+            <article class="scroll-card">
+
+                <div class="scroll-image">
+
+                    <span class="scroll-badge">
+                        Trending
+                    </span>
+
+                    <img
+                        src="{% static 'images/theme-birds.jpg' %}"
+                        alt="Nature Scroll Invitation"
+                    >
+
+                    <a
+                        href="#"
+                        class="scroll-wishlist"
+                    >
+                        <i class="fa-regular fa-heart"></i>
+                    </a>
+
+                </div>
+
+
+                <div class="scroll-content">
+
+                    <h3>
+                        Nature Scroll
+                    </h3>
+
+                    <p>
+                        A soft nature-inspired design with
+                        beautiful botanical details.
+                    </p>
+
+                    <div class="scroll-price">
+
+                        <span class="current">
+                            ₹749
+                        </span>
+
+                        <span class="old">
+                            ₹949
+                        </span>
+
+                    </div>
+
+                    <a href="#" class="scroll-btn">
+                        View Invitation
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- CARD 6 -->
+
+            <article class="scroll-card">
+
+                <div class="scroll-image">
+
+                    <span class="scroll-badge">
+                        Classic
+                    </span>
+
+                    <img
+                        src="{% static 'images/theme-beach.jpg' %}"
+                        alt="Classic Scroll Invitation"
+                    >
+
+                    <a
+                        href="#"
+                        class="scroll-wishlist"
+                    >
+                        <i class="fa-regular fa-heart"></i>
+                    </a>
+
+                </div>
+
+
+                <div class="scroll-content">
+
+                    <h3>
+                        Classic Celebration Scroll
+                    </h3>
+
+                    <p>
+                        A timeless scroll design created for
+                        elegant family celebrations.
+                    </p>
+
+                    <div class="scroll-price">
+
+                        <span class="current">
+                            ₹799
+                        </span>
+
+                        <span class="old">
+                            ₹999
+                        </span>
+
+                    </div>
+
+                    <a href="#" class="scroll-btn">
+                        View Invitation
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+
+        <!-- =================================================
+             BENEFITS
+        ================================================= -->
+
+        <div class="scroll-benefits">
+
+            <h2>
+                Why Choose Scroll Invitations?
+            </h2>
+
+            <div class="benefit-grid">
+
+                <div class="benefit">
+
+                    <i class="fa-solid fa-crown"></i>
+
+                    <h4>
+                        Royal Look
+                    </h4>
+
+                    <p>
+                        Create a luxurious first impression.
+                    </p>
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <i class="fa-solid fa-scroll"></i>
+
+                    <h4>
+                        Traditional Style
+                    </h4>
+
+                    <p>
+                        Inspired by timeless Indian traditions.
+                    </p>
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <i class="fa-solid fa-pen-nib"></i>
+
+                    <h4>
+                        Personalize
+                    </h4>
+
+                    <p>
+                        Add your own celebration details.
+                    </p>
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <i class="fa-solid fa-gem"></i>
+
+                    <h4>
+                        Premium Finish
+                    </h4>
+
+                    <p>
+                        Designed to make your invitation special.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

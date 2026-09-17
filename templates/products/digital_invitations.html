@@ -1,0 +1,1446 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Digital Invitations | Wed Knot Craft{% endblock %}
+
+{% block extra_css %}
+<style>
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.digital-hero {
+    min-height: 360px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e6e6fa 0%,
+            #f5efff 45%,
+            #ffe5b4 100%
+        );
+}
+
+.digital-hero::before {
+    content: "";
+    position: absolute;
+
+    width: 320px;
+    height: 320px;
+
+    top: -160px;
+    left: -100px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 171, 13, 0.15);
+}
+
+.digital-hero::after {
+    content: "";
+    position: absolute;
+
+    width: 340px;
+    height: 340px;
+
+    right: -120px;
+    bottom: -180px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.55);
+}
+
+.hero-content {
+    max-width: 800px;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content span {
+    color: #b77c00;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 3px;
+}
+
+.hero-content h1 {
+    margin: 10px 0 15px;
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.hero-content p {
+    max-width: 680px;
+    margin: auto;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.hero-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-top: 23px;
+    padding: 11px 24px;
+
+    background: #ffab0d;
+    border-radius: 5px;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    transition: 0.3s ease;
+}
+
+.hero-btn:hover {
+    transform: translateY(-3px);
+    background: #e79a00;
+}
+
+
+/* =====================================================
+   BREADCRUMB
+===================================================== */
+
+.breadcrumb {
+    padding: 22px 0;
+    color: #777;
+    font-size: 12px;
+}
+
+.breadcrumb a {
+    color: #222;
+}
+
+.breadcrumb span {
+    margin: 0 8px;
+    color: #aaa;
+}
+
+
+/* =====================================================
+   DIGITAL SECTION
+===================================================== */
+
+.digital-section {
+    padding: 15px 0 80px;
+}
+
+.section-heading {
+    max-width: 700px;
+    margin: 0 auto 40px;
+    text-align: center;
+}
+
+.section-heading span {
+    color: #b77c00;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.section-heading h2 {
+    margin: 8px 0;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.section-heading p {
+    color: #777;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   FILTER
+===================================================== */
+
+.digital-filter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin-bottom: 38px;
+}
+
+.filter-btn {
+    padding: 9px 20px;
+
+    border: 1px solid #ddd;
+    border-radius: 30px;
+
+    background: #ffffff;
+
+    font-size: 12px;
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: #ffab0d;
+    border-color: #ffab0d;
+}
+
+
+/* =====================================================
+   DIGITAL GRID
+===================================================== */
+
+.digital-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.digital-card {
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border: 1px solid #eeeeee;
+    border-radius: 10px;
+
+    transition: 0.35s ease;
+}
+
+.digital-card:hover {
+    transform: translateY(-7px);
+
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.11);
+}
+
+
+/* =====================================================
+   IMAGE
+===================================================== */
+
+.digital-image {
+    height: 330px;
+    position: relative;
+    overflow: hidden;
+    background: #f6f4fa;
+}
+
+.digital-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition: 0.5s ease;
+}
+
+.digital-card:hover .digital-image img {
+    transform: scale(1.06);
+}
+
+
+/* =====================================================
+   BADGE
+===================================================== */
+
+.digital-badge {
+    position: absolute;
+
+    top: 14px;
+    left: 14px;
+
+    z-index: 2;
+
+    padding: 6px 11px;
+
+    background: #ffab0d;
+    border-radius: 4px;
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   HEART
+===================================================== */
+
+.digital-heart {
+    position: absolute;
+
+    top: 14px;
+    right: 14px;
+
+    z-index: 2;
+
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #ffffff;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.12);
+
+    transition: 0.3s ease;
+}
+
+.digital-heart:hover {
+    background: #ffab0d;
+}
+
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.digital-content {
+    padding: 20px;
+}
+
+.digital-type {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #b77c00;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+.digital-content h3 {
+    margin-bottom: 7px;
+
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.digital-content p {
+    min-height: 42px;
+
+    margin-bottom: 12px;
+
+    color: #777;
+
+    font-size: 11px;
+
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   FEATURES
+===================================================== */
+
+.card-features {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    margin-bottom: 15px;
+}
+
+.card-features span {
+    padding: 5px 8px;
+
+    background: #f2efff;
+
+    border-radius: 4px;
+
+    color: #555;
+
+    font-size: 9px;
+}
+
+
+/* =====================================================
+   PRICE
+===================================================== */
+
+.digital-price {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    margin-bottom: 15px;
+}
+
+.current-price {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.old-price {
+    color: #999;
+    font-size: 11px;
+    text-decoration: line-through;
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.digital-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.preview-btn,
+.buy-btn {
+    min-height: 39px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    border-radius: 5px;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    transition: 0.3s ease;
+}
+
+.preview-btn {
+    border: 1px solid #222;
+    background: #ffffff;
+}
+
+.preview-btn:hover {
+    background: #111;
+    color: #ffffff;
+}
+
+.buy-btn {
+    background: #ffab0d;
+    border: 1px solid #ffab0d;
+}
+
+.buy-btn:hover {
+    background: #e79a00;
+    border-color: #e79a00;
+}
+
+
+/* =====================================================
+   HOW DIGITAL WORKS
+===================================================== */
+
+.how-section {
+    padding: 65px 0;
+    background: #e6e6fa;
+}
+
+.how-section h2 {
+    margin-bottom: 35px;
+
+    text-align: center;
+
+    font-size: 26px;
+}
+
+.how-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.how-card {
+    text-align: center;
+}
+
+.how-icon {
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 15px;
+
+    background: #ffffff;
+
+    border-radius: 50%;
+
+    color: #b77c00;
+
+    font-size: 22px;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.how-card h3 {
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+.how-card p {
+    color: #777;
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   BENEFITS
+===================================================== */
+
+.benefits-section {
+    padding: 70px 0;
+}
+
+.benefit-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.benefit-card {
+    padding: 25px 18px;
+
+    text-align: center;
+
+    background: #fff9ed;
+
+    border-radius: 8px;
+
+    transition: 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+}
+
+.benefit-card i {
+    margin-bottom: 10px;
+
+    color: #b77c00;
+
+    font-size: 25px;
+}
+
+.benefit-card h4 {
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.benefit-card p {
+    color: #777;
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1000px) {
+
+    .digital-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .how-grid,
+    .benefit-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 750px) {
+
+    .hero-content h1 {
+        font-size: 32px;
+    }
+}
+
+
+@media (max-width: 550px) {
+
+    .digital-hero {
+        min-height: 300px;
+        padding: 40px 15px;
+    }
+
+    .hero-content h1 {
+        font-size: 27px;
+    }
+
+    .digital-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .digital-image {
+        height: 360px;
+    }
+
+    .how-grid,
+    .benefit-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="digital-hero">
+
+    <div class="hero-content">
+
+        <span>
+            MODERN • FAST • BEAUTIFUL
+        </span>
+
+        <h1>
+            Digital Invitations
+        </h1>
+
+        <p>
+            Celebrate your special moments with beautiful
+            digital invitations that can be personalized
+            and shared instantly with family and friends.
+        </p>
+
+        <a href="#digital_collection" class="hero-btn">
+
+            Explore Invitations
+
+            <i class="fa-solid fa-arrow-down"></i>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     BREADCRUMB
+===================================================== -->
+
+<div class="container">
+
+    <div class="breadcrumb">
+
+        <a href="{% url 'home' %}">
+            Home
+        </a>
+
+        <span>/</span>
+
+        Digital Invitations
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     DIGITAL COLLECTION
+===================================================== -->
+
+<section
+    class="digital-section"
+    id="digital_collection"
+>
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span>
+                DIGITAL COLLECTION
+            </span>
+
+            <h2>
+                Beautiful Digital Invitation Designs
+            </h2>
+
+            <p>
+                Choose your favourite design, personalize
+                your details and share it instantly.
+            </p>
+
+        </div>
+
+
+        <!-- FILTER -->
+
+        <div class="digital-filter">
+
+            <button class="filter-btn active">
+                All
+            </button>
+
+            <button class="filter-btn">
+                Wedding
+            </button>
+
+            <button class="filter-btn">
+                Engagement
+            </button>
+
+            <button class="filter-btn">
+                Birthday
+            </button>
+
+            <button class="filter-btn">
+                Traditional
+            </button>
+
+            <button class="filter-btn">
+                Modern
+            </button>
+
+        </div>
+
+
+        <!-- =================================================
+             CARDS
+        ================================================= -->
+
+        <div class="digital-grid">
+
+
+            <!-- CARD 1 -->
+
+            <article class="digital-card">
+
+                <div class="digital-image">
+
+                    <span class="digital-badge">
+                        Popular
+                    </span>
+
+                    <img
+                        src="{% static 'images/exclusive-hindu.jpg' %}"
+                        alt="Traditional Digital Wedding Invitation"
+                    >
+
+                    <a href="#" class="digital-heart">
+                        <i class="fa-regular fa-heart"></i>
+                    </a>
+
+                </div>
+
+
+                <div class="digital-content">
+
+                    <span class="digital-type">
+                        Wedding
+                    </span>
+
+                    <h3>
+                        Traditional Digital Invite
+                    </h3>
+
+                    <p>
+                        A beautiful traditional design
+                        created for elegant wedding celebrations.
+                    </p>
+
+                    <div class="card-features">
+
+                        <span>
+                            <i class="fa-brands fa-whatsapp"></i>
+                            WhatsApp
+                        </span>
+
+                        <span>
+                            <i class="fa-solid fa-mobile-screen"></i>
+                            Mobile
+                        </span>
+
+                    </div>
+
+                    <div class="digital-price">
+
+                        <span class="current-price">
+                            ₹299
+                        </span>
+
+                        <span class="old-price">
+                            ₹499
+                        </span>
+
+                    </div>
+
+
+                    <div class="digital-buttons">
+
+                        <a href="#" class="preview-btn">
+
+                            <i class="fa-regular fa-eye"></i>
+
+                            Preview
+
+                        </a>
+
+                        <a href="#" class="buy-btn">
+                            Customize
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- CARD 2 -->
+
+            <article class="digital-card">
+
+                <div class="digital-image">
+
+                    <span class="digital-badge">
+                        Premium
+                    </span>
+
+                    <img
+                        src="{% static 'images/exclusive-luxury.jpg' %}"
+                        alt="Luxury Digital Invitation"
+                    >
+
+                    <a href="#" class="digital-heart">
+                        <i class="fa-regular fa-heart"></i>
+                    </a>
+
+                </div>
+
+
+                <div class="digital-content">
+
+                    <span class="digital-type">
+                        Luxury
+                    </span>
+
+                    <h3>
+                        Luxury Golden Digital Invite
+                    </h3>
+
+                    <p>
+                        Premium digital invitation with
+                        elegant luxury-inspired details.
+                    </p>
+
+                    <div class="card-features">
+
+                        <span>
+                            <i class="fa-brands fa-whatsapp"></i>
+                            WhatsApp
+                        </span>
+
+                        <span>
+                            <i class="fa-solid fa-share-nodes"></i>
+                            Share
+                        </span>
+
+                    </div>
+
+                    <div class="digital-price">
+
+                        <span class="current-price">
+                            ₹399
+                        </span>
+
+                        <span class="old-price">
+                            ₹599
+                        </span>
+
+                    </div>
+
+
+                    <div class="digital-buttons">
+
+                        <a href="#" class="preview-btn">
+
+                            <i class="fa-regular fa-eye"></i>
+
+                            Preview
+
+                        </a>
+
+                        <a href="#" class="buy-btn">
+                            Customize
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- CARD 3 -->
+
+            <article class="digital-card">
+
+                <div class="digital-image">
+
+                    <span class="digital-badge">
+                        Trending
+                    </span>
+
+                    <img
+                        src="{% static 'images/exclusive-floral.jpg' %}"
+                        alt="Floral Digital Invitation"
+                    >
+
+                    <a href="#" class="digital-heart">
+                        <i class="fa-regular fa-heart"></i>
+                    </a>
+
+                </div>
+
+
+                <div class="digital-content">
+
+                    <span class="digital-type">
+                        Floral
+                    </span>
+
+                    <h3>
+                        Romantic Floral Digital Invite
+                    </h3>
+
+                    <p>
+                        A soft and romantic floral invitation
+                        for your beautiful celebration.
+                    </p>
+
+                    <div class="card-features">
+
+                        <span>
+                            <i class="fa-brands fa-whatsapp"></i>
+                            WhatsApp
+                        </span>
+
+                        <span>
+                            <i class="fa-solid fa-mobile-screen"></i>
+                            Mobile
+                        </span>
+
+                    </div>
+
+                    <div class="digital-price">
+
+                        <span class="current-price">
+                            ₹249
+                        </span>
+
+                        <span class="old-price">
+                            ₹399
+                        </span>
+
+                    </div>
+
+
+                    <div class="digital-buttons">
+
+                        <a href="#" class="preview-btn">
+
+                            <i class="fa-regular fa-eye"></i>
+
+                            Preview
+
+                        </a>
+
+                        <a href="#" class="buy-btn">
+                            Customize
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- CARD 4 -->
+
+            <article class="digital-card">
+
+                <div class="digital-image">
+
+                    <span class="digital-badge">
+                        New
+                    </span>
+
+                    <img
+                        src="{% static 'images/theme-palace.jpg' %}"
+                        alt="Royal Digital Invitation"
+                    >
+
+                    <a href="#" class="digital-heart">
+                        <i class="fa-regular fa-heart"></i>
+                    </a>
+
+                </div>
+
+
+                <div class="digital-content">
+
+                    <span class="digital-type">
+                        Royal
+                    </span>
+
+                    <h3>
+                        Royal Palace Digital Invite
+                    </h3>
+
+                    <p>
+                        A grand digital invitation inspired
+                        by elegant royal wedding celebrations.
+                    </p>
+
+                    <div class="card-features">
+
+                        <span>
+                            <i class="fa-solid fa-share-nodes"></i>
+                            Share
+                        </span>
+
+                        <span>
+                            <i class="fa-solid fa-mobile-screen"></i>
+                            Mobile
+                        </span>
+
+                    </div>
+
+                    <div class="digital-price">
+
+                        <span class="current-price">
+                            ₹349
+                        </span>
+
+                        <span class="old-price">
+                            ₹549
+                        </span>
+
+                    </div>
+
+
+                    <div class="digital-buttons">
+
+                        <a href="#" class="preview-btn">
+
+                            <i class="fa-regular fa-eye"></i>
+
+                            Preview
+
+                        </a>
+
+                        <a href="#" class="buy-btn">
+                            Customize
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- CARD 5 -->
+
+            <article class="digital-card">
+
+                <div class="digital-image">
+
+                    <img
+                        src="{% static 'images/theme-birds.jpg' %}"
+                        alt="Nature Digital Invitation"
+                    >
+
+                    <a href="#" class="digital-heart">
+                        <i class="fa-regular fa-heart"></i>
+                    </a>
+
+                </div>
+
+
+                <div class="digital-content">
+
+                    <span class="digital-type">
+                        Nature
+                    </span>
+
+                    <h3>
+                        Nature Digital Invitation
+                    </h3>
+
+                    <p>
+                        A fresh and graceful invitation
+                        inspired by nature and floral beauty.
+                    </p>
+
+                    <div class="card-features">
+
+                        <span>
+                            <i class="fa-brands fa-whatsapp"></i>
+                            WhatsApp
+                        </span>
+
+                        <span>
+                            <i class="fa-solid fa-share-nodes"></i>
+                            Share
+                        </span>
+
+                    </div>
+
+                    <div class="digital-price">
+
+                        <span class="current-price">
+                            ₹249
+                        </span>
+
+                        <span class="old-price">
+                            ₹399
+                        </span>
+
+                    </div>
+
+
+                    <div class="digital-buttons">
+
+                        <a href="#" class="preview-btn">
+
+                            <i class="fa-regular fa-eye"></i>
+
+                            Preview
+
+                        </a>
+
+                        <a href="#" class="buy-btn">
+                            Customize
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- CARD 6 -->
+
+            <article class="digital-card">
+
+                <div class="digital-image">
+
+                    <span class="digital-badge">
+                        Bestseller
+                    </span>
+
+                    <img
+                        src="{% static 'images/theme-beach.jpg' %}"
+                        alt="Modern Digital Invitation"
+                    >
+
+                    <a href="#" class="digital-heart">
+                        <i class="fa-regular fa-heart"></i>
+                    </a>
+
+                </div>
+
+
+                <div class="digital-content">
+
+                    <span class="digital-type">
+                        Modern
+                    </span>
+
+                    <h3>
+                        Modern Celebration Invite
+                    </h3>
+
+                    <p>
+                        Clean and stylish digital invitation
+                        for modern wedding celebrations.
+                    </p>
+
+                    <div class="card-features">
+
+                        <span>
+                            <i class="fa-brands fa-whatsapp"></i>
+                            WhatsApp
+                        </span>
+
+                        <span>
+                            <i class="fa-solid fa-mobile-screen"></i>
+                            Mobile
+                        </span>
+
+                    </div>
+
+                    <div class="digital-price">
+
+                        <span class="current-price">
+                            ₹299
+                        </span>
+
+                        <span class="old-price">
+                            ₹449
+                        </span>
+
+                    </div>
+
+
+                    <div class="digital-buttons">
+
+                        <a href="#" class="preview-btn">
+
+                            <i class="fa-regular fa-eye"></i>
+
+                            Preview
+
+                        </a>
+
+                        <a href="#" class="buy-btn">
+                            Customize
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     HOW IT WORKS
+===================================================== -->
+
+<section class="how-section">
+
+    <div class="container">
+
+        <h2>
+            How Digital Invitations Work
+        </h2>
+
+
+        <div class="how-grid">
+
+
+            <div class="how-card">
+
+                <div class="how-icon">
+                    <i class="fa-regular fa-images"></i>
+                </div>
+
+                <h3>
+                    1. Choose Design
+                </h3>
+
+                <p>
+                    Select your favourite digital invitation.
+                </p>
+
+            </div>
+
+
+            <div class="how-card">
+
+                <div class="how-icon">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </div>
+
+                <h3>
+                    2. Customize
+                </h3>
+
+                <p>
+                    Add names, dates, venue and event details.
+                </p>
+
+            </div>
+
+
+            <div class="how-card">
+
+                <div class="how-icon">
+                    <i class="fa-regular fa-eye"></i>
+                </div>
+
+                <h3>
+                    3. Preview
+                </h3>
+
+                <p>
+                    Review your invitation before finalizing.
+                </p>
+
+            </div>
+
+
+            <div class="how-card">
+
+                <div class="how-icon">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </div>
+
+                <h3>
+                    4. Share
+                </h3>
+
+                <p>
+                    Share instantly with family and friends.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     BENEFITS
+===================================================== -->
+
+<section class="benefits-section">
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <span>
+                WHY DIGITAL?
+            </span>
+
+            <h2>
+                Smart Invitations For Modern Celebrations
+            </h2>
+
+        </div>
+
+
+        <div class="benefit-grid">
+
+
+            <div class="benefit-card">
+
+                <i class="fa-solid fa-bolt"></i>
+
+                <h4>
+                    Instant Delivery
+                </h4>
+
+                <p>
+                    Receive and share your invitation quickly.
+                </p>
+
+            </div>
+
+
+            <div class="benefit-card">
+
+                <i class="fa-brands fa-whatsapp"></i>
+
+                <h4>
+                    Easy Sharing
+                </h4>
+
+                <p>
+                    Send invitations directly through WhatsApp.
+                </p>
+
+            </div>
+
+
+            <div class="benefit-card">
+
+                <i class="fa-solid fa-leaf"></i>
+
+                <h4>
+                    Eco Friendly
+                </h4>
+
+                <p>
+                    Celebrate beautifully without paper waste.
+                </p>
+
+            </div>
+
+
+            <div class="benefit-card">
+
+                <i class="fa-solid fa-mobile-screen-button"></i>
+
+                <h4>
+                    Mobile Friendly
+                </h4>
+
+                <p>
+                    Beautifully optimized for mobile screens.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

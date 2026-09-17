@@ -1,0 +1,1539 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Wedding Invitations | Wed Knot Craft
+{% endblock %}
+
+
+{% block extra_css %}
+
+<style>
+
+/* =====================================================
+   WEDDING INVITATIONS PAGE
+===================================================== */
+
+.wedding-page {
+    background: #ffffff;
+}
+
+
+/* =====================================================
+   PAGE HERO
+===================================================== */
+
+.page-hero {
+    background: linear-gradient(
+        135deg,
+        #e6e6fa,
+        #fff4e2
+    );
+
+    padding: 55px 20px;
+
+    text-align: center;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.page-hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 171, 13, 0.12);
+
+    top: -100px;
+    left: -60px;
+}
+
+.page-hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 250px;
+    height: 250px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 229, 180, 0.45);
+
+    right: -80px;
+    bottom: -120px;
+}
+
+.page-hero-content {
+    position: relative;
+
+    z-index: 2;
+}
+
+.page-hero span {
+    display: block;
+
+    color: #b87b00;
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
+
+    font-weight: 600;
+
+    margin-bottom: 8px;
+}
+
+.page-hero h1 {
+    font-size: 38px;
+
+    font-weight: 600;
+
+    margin-bottom: 12px;
+}
+
+.page-hero p {
+    max-width: 700px;
+
+    margin: auto;
+
+    color: #666;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+
+/* =====================================================
+   BREADCRUMB
+===================================================== */
+
+.breadcrumb {
+    padding: 20px 0;
+
+    font-size: 12px;
+
+    color: #777;
+}
+
+.breadcrumb a {
+    color: #222;
+
+    font-weight: 500;
+}
+
+.breadcrumb span {
+    margin: 0 8px;
+
+    color: #aaa;
+}
+
+
+/* =====================================================
+   SHOP
+===================================================== */
+
+.shop-section {
+    padding: 15px 0 80px;
+}
+
+
+/* TOP */
+
+.shop-top {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 30px;
+}
+
+.shop-title h2 {
+    font-size: 24px;
+
+    font-weight: 600;
+}
+
+.shop-title p {
+    color: #777;
+
+    font-size: 12px;
+
+    margin-top: 3px;
+}
+
+
+/* SORT */
+
+.sort-box {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.sort-box label {
+    font-size: 12px;
+
+    color: #777;
+}
+
+.sort-box select {
+    padding: 9px 35px 9px 12px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 5px;
+
+    background: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    outline: none;
+}
+
+
+/* =====================================================
+   CATEGORY FILTER
+===================================================== */
+
+.category-filter {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 35px;
+}
+
+.category-btn {
+    border: 1px solid #ddd;
+
+    background: #ffffff;
+
+    padding: 9px 20px;
+
+    border-radius: 30px;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.category-btn:hover,
+.category-btn.active {
+    background: #ffab0d;
+
+    border-color: #ffab0d;
+
+    color: #111;
+}
+
+
+/* =====================================================
+   PRODUCT GRID
+===================================================== */
+
+.product-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 22px;
+}
+
+
+/* =====================================================
+   PRODUCT CARD
+===================================================== */
+
+.product-card {
+    background: #ffffff;
+
+    border: 1px solid #eeeeee;
+
+    border-radius: 8px;
+
+    overflow: hidden;
+
+    position: relative;
+
+    transition: 0.35s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-7px);
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.10);
+}
+
+
+/* IMAGE */
+
+.product-image {
+    position: relative;
+
+    height: 310px;
+
+    background: #f7f7f7;
+
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: 0.5s ease;
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.06);
+}
+
+
+/* BADGE */
+
+.product-badge {
+    position: absolute;
+
+    top: 12px;
+    left: 12px;
+
+    background: #ffab0d;
+
+    color: #111;
+
+    padding: 5px 10px;
+
+    border-radius: 4px;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    z-index: 2;
+}
+
+
+/* WISHLIST */
+
+.product-wishlist {
+    position: absolute;
+
+    top: 12px;
+    right: 12px;
+
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: rgba(255, 255, 255, 0.95);
+
+    border-radius: 50%;
+
+    font-size: 15px;
+
+    z-index: 2;
+
+    transition: 0.3s ease;
+}
+
+.product-wishlist:hover {
+    background: #ffab0d;
+
+    transform: scale(1.1);
+}
+
+
+/* CONTENT */
+
+.product-content {
+    padding: 18px;
+}
+
+.product-category {
+    color: #b27b00;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+.product-title {
+    font-size: 14px;
+
+    font-weight: 500;
+
+    margin: 7px 0;
+
+    line-height: 1.5;
+
+    min-height: 42px;
+}
+
+
+/* RATING */
+
+.product-rating {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    margin-bottom: 10px;
+}
+
+.stars {
+    color: #ffab0d;
+
+    font-size: 12px;
+}
+
+.review-count {
+    color: #999;
+
+    font-size: 10px;
+}
+
+
+/* PRICE */
+
+.product-price {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin-bottom: 15px;
+}
+
+.current-price {
+    font-size: 17px;
+
+    font-weight: 600;
+}
+
+.old-price {
+    color: #999;
+
+    font-size: 11px;
+
+    text-decoration: line-through;
+}
+
+
+/* BUTTONS */
+
+.product-buttons {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 8px;
+}
+
+.btn {
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 5px;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.btn-outline {
+    border: 1px solid #222;
+
+    background: #ffffff;
+}
+
+.btn-outline:hover {
+    background: #111;
+
+    color: #ffffff;
+}
+
+.btn-primary {
+    border: 1px solid #ffab0d;
+
+    background: #ffab0d;
+
+    color: #111;
+}
+
+.btn-primary:hover {
+    background: #e49a00;
+
+    border-color: #e49a00;
+}
+
+
+/* =====================================================
+   PAGINATION
+===================================================== */
+
+.pagination {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-top: 55px;
+}
+
+.page-number {
+    width: 35px;
+    height: 35px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 1px solid #ddd;
+
+    border-radius: 5px;
+
+    font-size: 12px;
+
+    transition: 0.3s ease;
+}
+
+.page-number:hover,
+.page-number.active {
+    background: #ffab0d;
+
+    border-color: #ffab0d;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1100px) {
+
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
+
+@media (max-width: 850px) {
+
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .shop-top {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+    }
+
+}
+
+
+@media (max-width: 550px) {
+
+    .page-hero {
+        padding: 40px 15px;
+    }
+
+    .page-hero h1 {
+        font-size: 28px;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .product-image {
+        height: 360px;
+    }
+
+}
+
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="wedding-page">
+
+
+    <!-- =================================================
+         PAGE HERO
+    ================================================= -->
+
+    <section class="page-hero">
+
+        <div class="page-hero-content">
+
+            <span>
+                WEDDING INVITATION COLLECTION
+            </span>
+
+            <h1>
+                Beautiful Wedding Invitations
+            </h1>
+
+            <p>
+                Discover elegant and traditional wedding invitation
+                designs crafted to make your special celebration
+                unforgettable.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         BREADCRUMB
+    ================================================= -->
+
+    <div class="container">
+
+        <div class="breadcrumb">
+
+            <a href="{% url 'home' %}">
+                Home
+            </a>
+
+            <span>/</span>
+
+            Wedding Invitations
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         SHOP
+    ================================================= -->
+
+    <section class="shop-section">
+
+        <div class="container">
+
+
+            <!-- TOP -->
+
+            <div class="shop-top">
+
+                <div class="shop-title">
+
+                    <h2>
+                        Wedding Invitation Cards
+                    </h2>
+
+                    <p>
+                        Elegant designs for your beautiful beginning
+                    </p>
+
+                </div>
+
+
+                <div class="sort-box">
+
+                    <label>
+                        Sort by
+                    </label>
+
+                    <select>
+
+                        <option>
+                            Featured
+                        </option>
+
+                        <option>
+                            Price: Low to High
+                        </option>
+
+                        <option>
+                            Price: High to Low
+                        </option>
+
+                        <option>
+                            Newest
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- CATEGORY FILTER -->
+
+            <div class="category-filter">
+
+                <button
+                    type="button"
+                    class="category-btn active"
+                >
+                    All
+                </button>
+
+                <button
+                    type="button"
+                    class="category-btn"
+                >
+                    Hindu
+                </button>
+
+                <button
+                    type="button"
+                    class="category-btn"
+                >
+                    Christian
+                </button>
+
+                <button
+                    type="button"
+                    class="category-btn"
+                >
+                    Muslim
+                </button>
+
+                <button
+                    type="button"
+                    class="category-btn"
+                >
+                    Interfaith
+                </button>
+
+                <button
+                    type="button"
+                    class="category-btn"
+                >
+                    Traditional
+                </button>
+
+                <button
+                    type="button"
+                    class="category-btn"
+                >
+                    Modern
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 PRODUCTS
+            ================================================= -->
+
+            <div class="product-grid">
+
+
+                <!-- PRODUCT 1 -->
+
+                <article class="product-card">
+
+                    <div class="product-image">
+
+                        <span class="product-badge">
+                            Popular
+                        </span>
+
+                        <a href="#">
+
+                            <img
+                                src="{% static 'images/exclusive-hindu.jpg' %}"
+                                alt="Traditional Hindu Wedding Invitation"
+                            >
+
+                        </a>
+
+                        <a
+                            href="#"
+                            class="product-wishlist"
+                            aria-label="Add to wishlist"
+                        >
+
+                            <i class="fa-regular fa-heart"></i>
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="product-content">
+
+                        <span class="product-category">
+                            Hindu Wedding
+                        </span>
+
+                        <h3 class="product-title">
+                            Elegant Traditional Hindu Wedding Card
+                        </h3>
+
+                        <div class="product-rating">
+
+                            <span class="stars">
+                                ★★★★★
+                            </span>
+
+                            <span class="review-count">
+                                (24)
+                            </span>
+
+                        </div>
+
+                        <div class="product-price">
+
+                            <span class="current-price">
+                                ₹499
+                            </span>
+
+                            <span class="old-price">
+                                ₹699
+                            </span>
+
+                        </div>
+
+                        <div class="product-buttons">
+
+                            <a
+                                href="#"
+                                class="btn btn-outline"
+                            >
+                                View Details
+                            </a>
+
+                            <a
+                                href="#"
+                                class="btn btn-primary"
+                            >
+                                Add to Cart
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PRODUCT 2 -->
+
+                <article class="product-card">
+
+                    <div class="product-image">
+
+                        <span class="product-badge">
+                            New
+                        </span>
+
+                        <a href="#">
+
+                            <img
+                                src="{% static 'images/exclusive-luxury.jpg' %}"
+                                alt="Luxury Wedding Invitation"
+                            >
+
+                        </a>
+
+                        <a
+                            href="#"
+                            class="product-wishlist"
+                            aria-label="Add to wishlist"
+                        >
+
+                            <i class="fa-regular fa-heart"></i>
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="product-content">
+
+                        <span class="product-category">
+                            Luxury Wedding
+                        </span>
+
+                        <h3 class="product-title">
+                            Premium Luxury Golden Wedding Invitation
+                        </h3>
+
+                        <div class="product-rating">
+
+                            <span class="stars">
+                                ★★★★★
+                            </span>
+
+                            <span class="review-count">
+                                (18)
+                            </span>
+
+                        </div>
+
+                        <div class="product-price">
+
+                            <span class="current-price">
+                                ₹599
+                            </span>
+
+                            <span class="old-price">
+                                ₹799
+                            </span>
+
+                        </div>
+
+                        <div class="product-buttons">
+
+                            <a
+                                href="#"
+                                class="btn btn-outline"
+                            >
+                                View Details
+                            </a>
+
+                            <a
+                                href="#"
+                                class="btn btn-primary"
+                            >
+                                Add to Cart
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PRODUCT 3 -->
+
+                <article class="product-card">
+
+                    <div class="product-image">
+
+                        <span class="product-badge">
+                            Trending
+                        </span>
+
+                        <a href="#">
+
+                            <img
+                                src="{% static 'images/exclusive-floral.jpg' %}"
+                                alt="Floral Wedding Invitation"
+                            >
+
+                        </a>
+
+                        <a
+                            href="#"
+                            class="product-wishlist"
+                            aria-label="Add to wishlist"
+                        >
+
+                            <i class="fa-regular fa-heart"></i>
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="product-content">
+
+                        <span class="product-category">
+                            Floral Wedding
+                        </span>
+
+                        <h3 class="product-title">
+                            Beautiful Floral Personal Wedding Invite
+                        </h3>
+
+                        <div class="product-rating">
+
+                            <span class="stars">
+                                ★★★★★
+                            </span>
+
+                            <span class="review-count">
+                                (31)
+                            </span>
+
+                        </div>
+
+                        <div class="product-price">
+
+                            <span class="current-price">
+                                ₹449
+                            </span>
+
+                            <span class="old-price">
+                                ₹599
+                            </span>
+
+                        </div>
+
+                        <div class="product-buttons">
+
+                            <a
+                                href="#"
+                                class="btn btn-outline"
+                            >
+                                View Details
+                            </a>
+
+                            <a
+                                href="#"
+                                class="btn btn-primary"
+                            >
+                                Add to Cart
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PRODUCT 4 -->
+
+                <article class="product-card">
+
+                    <div class="product-image">
+
+                        <a href="#">
+
+                            <img
+                                src="{% static 'images/theme-palace.jpg' %}"
+                                alt="Royal Wedding Invitation"
+                            >
+
+                        </a>
+
+                        <a
+                            href="#"
+                            class="product-wishlist"
+                            aria-label="Add to wishlist"
+                        >
+
+                            <i class="fa-regular fa-heart"></i>
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="product-content">
+
+                        <span class="product-category">
+                            Royal Wedding
+                        </span>
+
+                        <h3 class="product-title">
+                            Royal Palace Theme Wedding Invitation
+                        </h3>
+
+                        <div class="product-rating">
+
+                            <span class="stars">
+                                ★★★★★
+                            </span>
+
+                            <span class="review-count">
+                                (16)
+                            </span>
+
+                        </div>
+
+                        <div class="product-price">
+
+                            <span class="current-price">
+                                ₹549
+                            </span>
+
+                            <span class="old-price">
+                                ₹749
+                            </span>
+
+                        </div>
+
+                        <div class="product-buttons">
+
+                            <a
+                                href="#"
+                                class="btn btn-outline"
+                            >
+                                View Details
+                            </a>
+
+                            <a
+                                href="#"
+                                class="btn btn-primary"
+                            >
+                                Add to Cart
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PRODUCT 5 -->
+
+                <article class="product-card">
+
+                    <div class="product-image">
+
+                        <span class="product-badge">
+                            Sale
+                        </span>
+
+                        <a href="#">
+
+                            <img
+                                src="{% static 'images/theme-beach.jpg' %}"
+                                alt="Beach Wedding Invitation"
+                            >
+
+                        </a>
+
+                        <a
+                            href="#"
+                            class="product-wishlist"
+                            aria-label="Add to wishlist"
+                        >
+
+                            <i class="fa-regular fa-heart"></i>
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="product-content">
+
+                        <span class="product-category">
+                            Theme Wedding
+                        </span>
+
+                        <h3 class="product-title">
+                            Romantic Beach Theme Wedding Card
+                        </h3>
+
+                        <div class="product-rating">
+
+                            <span class="stars">
+                                ★★★★★
+                            </span>
+
+                            <span class="review-count">
+                                (12)
+                            </span>
+
+                        </div>
+
+                        <div class="product-price">
+
+                            <span class="current-price">
+                                ₹399
+                            </span>
+
+                            <span class="old-price">
+                                ₹549
+                            </span>
+
+                        </div>
+
+                        <div class="product-buttons">
+
+                            <a
+                                href="#"
+                                class="btn btn-outline"
+                            >
+                                View Details
+                            </a>
+
+                            <a
+                                href="#"
+                                class="btn btn-primary"
+                            >
+                                Add to Cart
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PRODUCT 6 -->
+
+                <article class="product-card">
+
+                    <div class="product-image">
+
+                        <a href="#">
+
+                            <img
+                                src="{% static 'images/theme-birds.jpg' %}"
+                                alt="Bird Theme Wedding Invitation"
+                            >
+
+                        </a>
+
+                        <a
+                            href="#"
+                            class="product-wishlist"
+                            aria-label="Add to wishlist"
+                        >
+
+                            <i class="fa-regular fa-heart"></i>
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="product-content">
+
+                        <span class="product-category">
+                            Modern Wedding
+                        </span>
+
+                        <h3 class="product-title">
+                            Elegant Birds Theme Personal Invitation
+                        </h3>
+
+                        <div class="product-rating">
+
+                            <span class="stars">
+                                ★★★★★
+                            </span>
+
+                            <span class="review-count">
+                                (20)
+                            </span>
+
+                        </div>
+
+                        <div class="product-price">
+
+                            <span class="current-price">
+                                ₹429
+                            </span>
+
+                            <span class="old-price">
+                                ₹579
+                            </span>
+
+                        </div>
+
+                        <div class="product-buttons">
+
+                            <a
+                                href="#"
+                                class="btn btn-outline"
+                            >
+                                View Details
+                            </a>
+
+                            <a
+                                href="#"
+                                class="btn btn-primary"
+                            >
+                                Add to Cart
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PRODUCT 7 -->
+
+                <article class="product-card">
+
+                    <div class="product-image">
+
+                        <span class="product-badge">
+                            Popular
+                        </span>
+
+                        <a href="#">
+
+                            <img
+                                src="{% static 'images/collection-christian.jpg' %}"
+                                alt="Christian Wedding Invitation"
+                            >
+
+                        </a>
+
+                        <a
+                            href="#"
+                            class="product-wishlist"
+                            aria-label="Add to wishlist"
+                        >
+
+                            <i class="fa-regular fa-heart"></i>
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="product-content">
+
+                        <span class="product-category">
+                            Christian Wedding
+                        </span>
+
+                        <h3 class="product-title">
+                            Elegant Christian Wedding Invitation Card
+                        </h3>
+
+                        <div class="product-rating">
+
+                            <span class="stars">
+                                ★★★★★
+                            </span>
+
+                            <span class="review-count">
+                                (15)
+                            </span>
+
+                        </div>
+
+                        <div class="product-price">
+
+                            <span class="current-price">
+                                ₹479
+                            </span>
+
+                            <span class="old-price">
+                                ₹649
+                            </span>
+
+                        </div>
+
+                        <div class="product-buttons">
+
+                            <a
+                                href="#"
+                                class="btn btn-outline"
+                            >
+                                View Details
+                            </a>
+
+                            <a
+                                href="#"
+                                class="btn btn-primary"
+                            >
+                                Add to Cart
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PRODUCT 8 -->
+
+                <article class="product-card">
+
+                    <div class="product-image">
+
+                        <span class="product-badge">
+                            New
+                        </span>
+
+                        <a href="#">
+
+                            <img
+                                src="{% static 'images/collection-muslim.jpg' %}"
+                                alt="Muslim Wedding Invitation"
+                            >
+
+                        </a>
+
+                        <a
+                            href="#"
+                            class="product-wishlist"
+                            aria-label="Add to wishlist"
+                        >
+
+                            <i class="fa-regular fa-heart"></i>
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="product-content">
+
+                        <span class="product-category">
+                            Muslim Wedding
+                        </span>
+
+                        <h3 class="product-title">
+                            Premium Muslim Wedding Invitation Design
+                        </h3>
+
+                        <div class="product-rating">
+
+                            <span class="stars">
+                                ★★★★★
+                            </span>
+
+                            <span class="review-count">
+                                (22)
+                            </span>
+
+                        </div>
+
+                        <div class="product-price">
+
+                            <span class="current-price">
+                                ₹499
+                            </span>
+
+                            <span class="old-price">
+                                ₹679
+                            </span>
+
+                        </div>
+
+                        <div class="product-buttons">
+
+                            <a
+                                href="#"
+                                class="btn btn-outline"
+                            >
+                                View Details
+                            </a>
+
+                            <a
+                                href="#"
+                                class="btn btn-primary"
+                            >
+                                Add to Cart
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 PAGINATION
+            ================================================= -->
+
+            <div class="pagination">
+
+                <a
+                    href="#"
+                    class="page-number active"
+                >
+                    1
+                </a>
+
+                <a
+                    href="#"
+                    class="page-number"
+                >
+                    2
+                </a>
+
+                <a
+                    href="#"
+                    class="page-number"
+                >
+                    3
+                </a>
+
+                <a
+                    href="#"
+                    class="page-number"
+                >
+                    <i class="fa-solid fa-angle-right"></i>
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}

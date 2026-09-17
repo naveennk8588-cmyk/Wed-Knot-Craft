@@ -1,0 +1,951 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Wed Knot Craft | Wedding Invitations
+{% endblock %}
+
+{% block content %}
+
+<section class="hero-section">
+
+    <div class="container hero-content">
+
+        <div class="hero-card">
+
+            <span class="hero-small-text">
+                WEDDING INVITATION COLLECTION
+            </span>
+
+            <h1>
+                Your Love Story Begins Here
+            </h1>
+
+            <p>
+                Create stunning wedding invitations that capture
+                the essence of your special day. Elegant designs,
+                heartfelt words, and everything you need to make
+                your first impression unforgettable.
+            </p>
+
+            <a href="{% url 'wedding_invitations' %}"
+               class="btn-primary">
+                Get your style
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= FEATURED INVITATION ================= -->
+
+<section class="featured-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+            <span>FEATURED COLLECTION</span>
+            <h2>Beautiful Invitations For Your Special Day</h2>
+            <p>
+                Discover elegant designs created to make
+                every celebration unforgettable.
+            </p>
+        </div>
+
+        <div class="featured-carousel">
+
+            <button class="carousel-btn prev-btn" id="prevSlide">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+
+            <div class="featured-track" id="featuredTrack">
+
+                <article class="featured-slide active">
+                    <div class="featured-image">
+                        <img
+                            src="{% static 'images/featured-laser.jpg' %}"
+                            alt="Laser Cut Invitations"
+                        >
+                    </div>
+
+                    <div class="featured-content">
+                        <span>PREMIUM COLLECTION</span>
+
+                        <h3>Laser Cut Invitations</h3>
+
+                        <p>
+                            Elegant laser-cut wedding invitations
+                            designed with a luxurious finish.
+                        </p>
+
+                        <a href="{% url 'wedding_invitations' %}"
+                           class="btn-primary">
+                            Shop Now
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+
+                <article class="featured-slide">
+                    <div class="featured-image">
+                        <img
+                            src="{% static 'images/featured-luxury.jpg' %}"
+                            alt="Luxury Wedding Invitations"
+                        >
+                    </div>
+
+                    <div class="featured-content">
+                        <span>LUXURY COLLECTION</span>
+
+                        <h3>Luxury Wedding Invitations</h3>
+
+                        <p>
+                            Premium invitation designs for
+                            sophisticated wedding celebrations.
+                        </p>
+
+                        <a href="{% url 'wedding_invitations' %}"
+                           class="btn-primary">
+                            Shop Now
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+
+                <article class="featured-slide">
+                    <div class="featured-image">
+                        <img
+                            src="{% static 'images/featured-floral.jpg' %}"
+                            alt="Floral Wedding Invitations"
+                        >
+                    </div>
+
+                    <div class="featured-content">
+                        <span>FLORAL COLLECTION</span>
+
+                        <h3>Floral Wedding Invitations</h3>
+
+                        <p>
+                            Soft floral-inspired invitation designs
+                            perfect for elegant ceremonies.
+                        </p>
+
+                        <a href="{% url 'wedding_invitations' %}"
+                           class="btn-primary">
+                            Shop Now
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+
+            <button class="carousel-btn next-btn" id="nextSlide">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+        </div>
+
+        <div class="carousel-dots" id="carouselDots">
+            <button class="dot active"></button>
+            <button class="dot"></button>
+            <button class="dot"></button>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= UNIQUE & EXCLUSIVE ================= -->
+
+<section class="exclusive-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+            <span>OUR COLLECTION</span>
+
+            <h2>
+                Unique & Exclusive Invitation Cards
+            </h2>
+
+            <p>
+                Because Each Wedding is Truly Unique and Memorable
+            </p>
+        </div>
+
+        <div class="exclusive-grid">
+
+            <!-- Hindu -->
+            <article class="exclusive-card">
+
+                <div class="exclusive-image">
+                    <img
+                        src="{% static 'images/exclusive-hindu.jpg' %}"
+                        alt="Hindu Wedding Cards"
+                    >
+                </div>
+
+                <div class="exclusive-content">
+
+                    <h3>
+                        Hindu Wedding Cards
+                    </h3>
+
+                    <p>
+                        Traditional designs with a modern touch
+                        for your sacred celebration.
+                    </p>
+
+                    <a href="{% url 'wedding_invitations' %}"
+                       class="exclusive-btn hindu-btn">
+                        View Collection
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- Luxury -->
+            <article class="exclusive-card">
+
+                <div class="exclusive-image">
+                    <img
+                        src="{% static 'images/exclusive-luxury.jpg' %}"
+                        alt="Luxury Wedding Cards"
+                    >
+                </div>
+
+                <div class="exclusive-content">
+
+                    <h3>
+                        Luxury Cards
+                    </h3>
+
+                    <p>
+                        Premium designs crafted for
+                        a sophisticated celebration.
+                    </p>
+
+                    <a href="{% url 'wedding_invitations' %}"
+                       class="exclusive-btn luxury-btn">
+                        View Collection
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- Floral -->
+            <article class="exclusive-card">
+
+                <div class="exclusive-image">
+                    <img
+                        src="{% static 'images/exclusive-floral.jpg' %}"
+                        alt="Floral Wedding Cards"
+                    >
+                </div>
+
+                <div class="exclusive-content">
+
+                    <h3>
+                        Floral Wedding Cards
+                    </h3>
+
+                    <p>
+                        Beautiful floral-inspired designs
+                        for a dreamy beginning.
+                    </p>
+
+                    <a href="{% url 'wedding_invitations' %}"
+                       class="exclusive-btn floral-btn">
+                        View Collection
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= THEME BASED INVITATION ================= -->
+
+<section class="theme-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+            <span>EXPLORE BY THEME</span>
+
+            <h2>Theme Based Invitation</h2>
+
+            <p>
+                Find an invitation style that perfectly matches
+                your wedding celebration.
+            </p>
+        </div>
+
+        <div class="theme-grid">
+
+            <!-- Beach -->
+            <article class="theme-card">
+
+                <div class="theme-image">
+                    <img
+                        src="{% static 'images/theme-beach.jpg' %}"
+                        alt="Beach Theme Wedding Cards"
+                    >
+                </div>
+
+                <div class="theme-content">
+
+                    <span class="theme-label">
+                        BEACH COLLECTION
+                    </span>
+
+                    <h3>
+                        Beach Theme Cards
+                    </h3>
+
+                    <p>
+                        Fresh, peaceful designs inspired by
+                        beaches, ocean waves and tropical romance.
+                    </p>
+
+                    <a href="{% url 'wedding_invitations' %}"
+                       class="theme-link">
+                        Explore Collection
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- Birds -->
+            <article class="theme-card">
+
+                <div class="theme-image">
+                    <img
+                        src="{% static 'images/theme-birds.jpg' %}"
+                        alt="Birds Theme Wedding Cards"
+                    >
+                </div>
+
+                <div class="theme-content">
+
+                    <span class="theme-label">
+                        NATURE COLLECTION
+                    </span>
+
+                    <h3>
+                        Birds Theme Cards
+                    </h3>
+
+                    <p>
+                        Delicate nature-inspired invitations
+                        featuring graceful birds and botanical details.
+                    </p>
+
+                    <a href="{% url 'wedding_invitations' %}"
+                       class="theme-link">
+                        Explore Collection
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- Palace -->
+            <article class="theme-card">
+
+                <div class="theme-image">
+                    <img
+                        src="{% static 'images/theme-palace.jpg' %}"
+                        alt="Palace Theme Wedding Cards"
+                    >
+                </div>
+
+                <div class="theme-content">
+
+                    <span class="theme-label">
+                        ROYAL COLLECTION
+                    </span>
+
+                    <h3>
+                        Palace Theme Cards
+                    </h3>
+
+                    <p>
+                        Grand royal designs inspired by
+                        palaces, heritage and timeless elegance.
+                    </p>
+
+                    <a href="{% url 'wedding_invitations' %}"
+                       class="theme-link">
+                        Explore Collection
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= PROMOTIONAL BANNERS ================= -->
+
+<section class="promo-section">
+
+    <div class="container promo-grid">
+
+        <!-- FIRST ORDER -->
+        <article class="promo-card">
+
+            <div class="promo-text first-promo">
+
+                <span class="promo-label">
+                    SPECIAL OFFER
+                </span>
+
+                <h2>
+                    20% Off Your First Order!
+                </h2>
+
+                <p>
+                    Join our love-letters list and enjoy
+                    20% off your first set of wedding
+                    invitations.
+                </p>
+
+                <span class="promo-note">
+                    Simple, beautiful, and easy on your budget.
+                </span>
+
+                <a href="{% url 'wedding_invitations' %}"
+                   class="promo-btn">
+                    Shop Now
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+            </div>
+
+            <div class="promo-art first-art">
+                <img
+                    src="{% static 'images/promo-first-order.jpg' %}"
+                    alt="First Order Offer"
+                >
+            </div>
+
+        </article>
+
+
+        <!-- EARLY BIRD -->
+        <article class="promo-card">
+
+            <div class="promo-art early-art">
+                <img
+                    src="{% static 'images/promo-early-bird.jpg' %}"
+                    alt="Early Bird Bonus"
+                >
+            </div>
+
+            <div class="promo-text early-promo">
+
+                <span class="promo-label">
+                    EARLY BIRD BONUS
+                </span>
+
+                <h2>
+                    Plan Ahead & Save
+                </h2>
+
+                <p>
+                    Book your order 60+ days in advance
+                    and get a free set of 20 extra invites
+                    for last-minute guests.
+                </p>
+
+                <span class="promo-note">
+                    More time, more savings, more memories.
+                </span>
+
+                <a href="{% url 'wedding_invitations' %}"
+                   class="promo-btn">
+                    Explore Offers
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+<!-- ================= PRODUCTS ================= -->
+
+<section class="products-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+            <span>WEDDING COLLECTION</span>
+
+            <h2>
+                Simple and Affordable Wedding Cards
+            </h2>
+
+            <p>
+                Beautiful invitation cards for every celebration.
+            </p>
+        </div>
+
+
+        <div class="product-grid">
+
+            {% for product in products %}
+
+            <article class="product-card">
+
+                <div class="product-image">
+
+                    <img
+                        src="{% static product.image %}"
+                        alt="{{ product.name }}"
+                    >
+
+                    <button class="product-heart">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <h3>
+                        {{ product.name }}
+                    </h3>
+
+                    <div class="product-bottom">
+
+                        <span class="product-price">
+                            Rs.{{ product.price }}
+                        </span>
+
+                        <button class="cart-icon">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+            {% empty %}
+
+            <p class="empty-products">
+                No products available.
+            </p>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="summer-sale-section">
+    <div class="container">
+        <div class="summer-sale-image">
+            <img
+                src="{% static 'images/summer-sale.jpg' %}"
+                alt="Summer Wedding Card Sale"
+            >
+        </div>
+    </div>
+</section>
+
+<!-- ================= INVITATION COLLECTIONS ================= -->
+
+<section class="collections-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+            <span>EXPLORE COLLECTIONS</span>
+            <h2>Wedding Invitation Collections</h2>
+            <p>
+                Discover beautiful invitation designs for every tradition.
+            </p>
+        </div>
+
+        <div class="collections-grid">
+
+            <article class="collection-card">
+                <img src="{% static 'images/collection-hindu.jpg' %}"
+                     alt="Hindu Invitation Collections">
+
+                <div class="collection-content">
+                    <h3>Hindu Invitation Collections</h3>
+
+                    <a href="{% url 'wedding_invitations' %}">
+                        Buy Now
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+
+            <article class="collection-card">
+                <img src="{% static 'images/collection-christian.jpg' %}"
+                     alt="Christian Invitation Collections">
+
+                <div class="collection-content">
+                    <h3>Christian Invitation Collections</h3>
+
+                    <a href="{% url 'wedding_invitations' %}">
+                        Buy Now
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+
+            <article class="collection-card">
+                <img src="{% static 'images/collection-muslim.jpg' %}"
+                     alt="Muslim Invitation Collections">
+
+                <div class="collection-content">
+                    <h3>Muslim Invitation Collections</h3>
+
+                    <a href="{% url 'wedding_invitations' %}">
+                        Buy Now
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+
+            <article class="collection-card">
+                <img src="{% static 'images/collection-interfaith.jpg' %}"
+                     alt="Interfaith Invitation Collections">
+
+                <div class="collection-content">
+                    <h3>Interfaith Invitation Collections</h3>
+
+                    <a href="{% url 'wedding_invitations' %}">
+                        Buy Now
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+
+<section class="testimonials-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+            <span>TESTIMONIALS</span>
+            <h2>What Client Say About Us</h2>
+        </div>
+
+        <div class="testimonial-grid">
+
+            <article class="testimonial-card">
+
+                <div class="testimonial-avatar">
+                    <img
+                        src="{% static 'images/client-james.jpg' %}"
+                        alt="James"
+                    >
+                </div>
+
+                <h3>James</h3>
+
+                <h4>Absolutely beautiful invites!</h4>
+
+                <p>
+                    We were blown away by the quality and elegance
+                    of our wedding invitations. The paper felt
+                    luxurious, and the printing was flawless.
+                </p>
+
+                <div class="testimonial-stars">
+                    ★ ★ ★ ★ ★
+                </div>
+
+            </article>
+
+
+            <article class="testimonial-card">
+
+                <div class="testimonial-avatar">
+                    <img
+                        src="{% static 'images/client-harshitha.jpg' %}"
+                        alt="Harshitha"
+                    >
+                </div>
+
+                <h3>Harshitha</h3>
+
+                <h4>Customized to perfection</h4>
+
+                <p>
+                    We wanted something simple but unique,
+                    and they absolutely nailed it. Colors,
+                    fonts and wording were exactly how we imagined.
+                </p>
+
+                <div class="testimonial-stars">
+                    ★ ★ ★ ★ ★
+                </div>
+
+            </article>
+
+
+            <article class="testimonial-card">
+
+                <div class="testimonial-avatar">
+                    <img
+                        src="{% static 'images/client-santhosh.jpg' %}"
+                        alt="Santhosh"
+                    >
+                </div>
+
+                <h3>Santhosh</h3>
+
+                <h4>Great quality at a great price.</h4>
+
+                <p>
+                    We were on a tight budget, but didn't want
+                    to compromise on style. These invites looked
+                    premium and arrived beautifully packaged.
+                </p>
+
+                <div class="testimonial-stars">
+                    ★ ★ ★ ★ ★
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= HOW IT WORKS ================= -->
+
+<section class="how-it-works-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+            <span>HOW IT WORKS</span>
+            <h2>Create Your Perfect Invitation</h2>
+            <p>
+                Simple steps to create beautiful invitations for your special day.
+            </p>
+        </div>
+
+        <div class="steps-grid">
+
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fa-solid fa-palette"></i>
+                </div>
+                <span class="step-number">01</span>
+                <h3>Choose Your Design</h3>
+                <p>Select a design that matches your wedding style.</p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+                <span class="step-number">02</span>
+                <h3>Customize Your Invitation</h3>
+                <p>Add your names, dates and special details.</p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <span class="step-number">03</span>
+                <h3>Review Your Details</h3>
+                <p>Check every detail before placing your order.</p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <span class="step-number">04</span>
+                <h3>Place Your Order</h3>
+                <p>Confirm your order securely and easily.</p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+                <span class="step-number">05</span>
+                <h3>Receive Your Invitations</h3>
+                <p>Get your beautifully crafted invitations delivered.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= WHY CHOOSE US ================= -->
+
+<section class="promise-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+            <span>OUR PROMISE</span>
+            <h2>Why Choose Wed Knot Craft?</h2>
+            <p>
+                Everything we do is designed to make your special moments more memorable.
+            </p>
+        </div>
+
+        <div class="promise-grid">
+
+            <div class="promise-card">
+                <div class="promise-icon">
+                    <i class="fa-solid fa-gem"></i>
+                </div>
+                <h3>Premium Quality</h3>
+                <p>
+                    Carefully crafted invitations with premium materials
+                    and beautiful finishing.
+                </p>
+            </div>
+
+            <div class="promise-card">
+                <div class="promise-icon">
+                    <i class="fa-solid fa-palette"></i>
+                </div>
+                <h3>Beautiful Designs</h3>
+                <p>
+                    Elegant and modern designs created for every
+                    wedding style and tradition.
+                </p>
+            </div>
+
+            <div class="promise-card">
+                <div class="promise-icon">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+                <h3>Easy Customization</h3>
+                <p>
+                    Personalize your invitation with names, dates,
+                    colors and special details.
+                </p>
+            </div>
+
+            <div class="promise-card">
+                <div class="promise-icon">
+                    <i class="fa-solid fa-truck-fast"></i>
+                </div>
+                <h3>Reliable Delivery</h3>
+                <p>
+                    Carefully packed invitations delivered safely
+                    to your doorstep.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="welcome-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+            <span>DISCOVER</span>
+            <h2>Beautiful Wedding Invitations</h2>
+            <p>
+                Elegant designs made for unforgettable moments.
+            </p>
+        </div>
+
+        <div class="intro-grid">
+
+            <div class="intro-card">
+                <i class="fa-solid fa-heart"></i>
+                <h3>Elegant Designs</h3>
+                <p>
+                    Explore beautiful invitation designs
+                    for every wedding style.
+                </p>
+            </div>
+
+            <div class="intro-card">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <h3>Unique Collections</h3>
+                <p>
+                    Discover traditional, luxury, floral
+                    and themed invitations.
+                </p>
+            </div>
+
+            <div class="intro-card">
+                <i class="fa-solid fa-gift"></i>
+                <h3>Premium Quality</h3>
+                <p>
+                    Carefully designed cards created
+                    for your special celebration.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

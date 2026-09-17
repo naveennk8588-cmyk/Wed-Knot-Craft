@@ -1,0 +1,942 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Special Occasions | Wed Knot Craft
+{% endblock %}
+
+
+{% block extra_css %}
+
+<style>
+
+/* =====================================================
+   SPECIAL OCCASIONS PAGE
+===================================================== */
+
+.occasions-page {
+    background: #ffffff;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.occasion-hero {
+    min-height: 330px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(230,230,250,.94),
+            rgba(255,229,180,.88)
+        );
+
+    position: relative;
+    overflow: hidden;
+}
+
+.occasion-hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 260px;
+    height: 260px;
+
+    background: rgba(255,171,13,.12);
+
+    border-radius: 50%;
+
+    top: -130px;
+    left: -70px;
+}
+
+.occasion-hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 300px;
+    height: 300px;
+
+    background: rgba(255,255,255,.45);
+
+    border-radius: 50%;
+
+    right: -100px;
+    bottom: -150px;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+
+    max-width: 800px;
+}
+
+.hero-content span {
+    color: #b77c00;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    letter-spacing: 3px;
+}
+
+.hero-content h1 {
+    font-size: 40px;
+
+    font-weight: 600;
+
+    margin: 10px 0 15px;
+}
+
+.hero-content p {
+    color: #666;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+
+/* =====================================================
+   BREADCRUMB
+===================================================== */
+
+.breadcrumb {
+    padding: 22px 0;
+
+    font-size: 12px;
+
+    color: #777;
+}
+
+.breadcrumb a {
+    color: #222;
+}
+
+.breadcrumb span {
+    margin: 0 8px;
+
+    color: #aaa;
+}
+
+
+/* =====================================================
+   OCCASIONS
+===================================================== */
+
+.occasions-section {
+    padding: 20px 0 85px;
+}
+
+.section-heading {
+    text-align: center;
+
+    margin-bottom: 40px;
+}
+
+.section-heading span {
+    color: #b77c00;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    letter-spacing: 2px;
+}
+
+.section-heading h2 {
+    font-size: 28px;
+
+    font-weight: 600;
+
+    margin: 7px 0;
+}
+
+.section-heading p {
+    color: #777;
+
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   OCCASION GRID
+===================================================== */
+
+.occasion-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.occasion-card {
+    background: #fff;
+
+    border: 1px solid #eee;
+
+    overflow: hidden;
+
+    border-radius: 8px;
+
+    transition: .35s ease;
+}
+
+.occasion-card:hover {
+    transform: translateY(-7px);
+
+    box-shadow:
+        0 18px 35px rgba(0,0,0,.10);
+}
+
+
+/* =====================================================
+   IMAGE
+===================================================== */
+
+.occasion-image {
+    height: 280px;
+
+    overflow: hidden;
+
+    position: relative;
+
+    background: #f6f6f6;
+}
+
+.occasion-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: .5s ease;
+}
+
+.occasion-card:hover .occasion-image img {
+    transform: scale(1.06);
+}
+
+
+/* =====================================================
+   HEART
+===================================================== */
+
+.occasion-heart {
+    position: absolute;
+
+    top: 15px;
+    right: 15px;
+
+    width: 36px;
+    height: 36px;
+
+    background: #fff;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 15px;
+
+    box-shadow:
+        0 3px 10px rgba(0,0,0,.12);
+
+    transition: .3s ease;
+}
+
+.occasion-heart:hover {
+    background: #ffab0d;
+
+    transform: scale(1.08);
+}
+
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.occasion-content {
+    padding: 22px;
+
+    text-align: center;
+}
+
+.occasion-content h3 {
+    font-size: 18px;
+
+    font-weight: 600;
+
+    margin-bottom: 8px;
+}
+
+.occasion-content p {
+    color: #777;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+
+    min-height: 42px;
+
+    margin-bottom: 18px;
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.occasion-btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 125px;
+
+    padding: 10px 18px;
+
+    background: #ffab0d;
+
+    border: 1px solid #ffab0d;
+
+    border-radius: 5px;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    transition: .3s ease;
+}
+
+.occasion-btn i {
+    margin-left: 7px;
+}
+
+.occasion-btn:hover {
+    background: #e49a00;
+
+    border-color: #e49a00;
+
+    transform: translateY(-2px);
+}
+
+
+/* =====================================================
+   FEATURE STRIP
+===================================================== */
+
+.feature-strip {
+    margin-top: 70px;
+
+    background: #e6e6fa;
+
+    padding: 35px 20px;
+
+    border-radius: 8px;
+}
+
+.feature-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+.feature-item {
+    text-align: center;
+}
+
+.feature-item i {
+    font-size: 25px;
+
+    margin-bottom: 10px;
+
+    color: #b77c00;
+}
+
+.feature-item h4 {
+    font-size: 14px;
+
+    margin-bottom: 4px;
+}
+
+.feature-item p {
+    color: #777;
+
+    font-size: 10px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1000px) {
+
+    .occasion-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 750px) {
+
+    .hero-content h1 {
+        font-size: 32px;
+    }
+
+}
+
+
+@media (max-width: 550px) {
+
+    .occasion-hero {
+        min-height: 280px;
+
+        padding: 40px 15px;
+    }
+
+    .hero-content h1 {
+        font-size: 27px;
+    }
+
+    .hero-content p {
+        font-size: 12px;
+    }
+
+    .occasion-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="occasions-page">
+
+
+    <!-- =================================================
+         HERO
+    ================================================= -->
+
+    <section class="occasion-hero">
+
+        <div class="hero-content">
+
+            <span>
+                CELEBRATE EVERY SPECIAL MOMENT
+            </span>
+
+            <h1>
+                Special Occasions
+            </h1>
+
+            <p>
+                Beautiful invitation designs for every celebration,
+                from birthdays and anniversaries to baby showers
+                and unforgettable family occasions.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         BREADCRUMB
+    ================================================= -->
+
+    <div class="container">
+
+        <div class="breadcrumb">
+
+            <a href="{% url 'home' %}">
+                Home
+            </a>
+
+            <span>/</span>
+
+            Special Occasions
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         OCCASIONS
+    ================================================= -->
+
+    <section class="occasions-section">
+
+        <div class="container">
+
+
+            <div class="section-heading">
+
+                <span>
+                    EXPLORE OUR COLLECTION
+                </span>
+
+                <h2>
+                    Invitations For Every Occasion
+                </h2>
+
+                <p>
+                    Make every special moment more memorable.
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 OCCASION GRID
+            ================================================= -->
+
+            <div class="occasion-grid">
+
+
+                <!-- =================================================
+                     BIRTHDAY
+                ================================================= -->
+
+                <article class="occasion-card">
+
+                    <div class="occasion-image">
+
+                        <img
+                            src="{% static 'images/featured-floral.jpg' %}"
+                            alt="Birthday Invitation"
+                        >
+
+                        <a
+                            href="#"
+                            class="occasion-heart"
+                            aria-label="Birthday wishlist"
+                        >
+
+                            <i class="fa-regular fa-heart"></i>
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="occasion-content">
+
+                        <h3>
+                            Birthday Invitations
+                        </h3>
+
+                        <p>
+                            Colorful and creative invitations
+                            for unforgettable birthday celebrations.
+                        </p>
+
+                        <a
+                            href="#"
+                            class="occasion-btn"
+                        >
+                            Explore
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- =================================================
+                     ANNIVERSARY
+                ================================================= -->
+
+                <article class="occasion-card">
+
+                    <div class="occasion-image">
+
+                        <img
+                            src="{% static 'images/exclusive-luxury.jpg' %}"
+                            alt="Anniversary Invitation"
+                        >
+
+                        <a
+                            href="#"
+                            class="occasion-heart"
+                            aria-label="Anniversary wishlist"
+                        >
+
+                            <i class="fa-regular fa-heart"></i>
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="occasion-content">
+
+                        <h3>
+                            Anniversary Invitations
+                        </h3>
+
+                        <p>
+                            Elegant designs to celebrate
+                            love, memories and togetherness.
+                        </p>
+
+                        <a
+                            href="#"
+                            class="occasion-btn"
+                        >
+                            Explore
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- =================================================
+                     BABY SHOWER
+                ================================================= -->
+
+                <article class="occasion-card">
+
+                    <div class="occasion-image">
+
+                        <img
+                            src="{% static 'images/theme-birds.jpg' %}"
+                            alt="Baby Shower Invitation"
+                        >
+
+                        <a
+                            href="#"
+                            class="occasion-heart"
+                            aria-label="Baby shower wishlist"
+                        >
+
+                            <i class="fa-regular fa-heart"></i>
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="occasion-content">
+
+                        <h3>
+                            Baby Shower Invitations
+                        </h3>
+
+                        <p>
+                            Sweet and charming invitation designs
+                            for welcoming your little one.
+                        </p>
+
+                        <a
+                            href="#"
+                            class="occasion-btn"
+                        >
+                            Explore
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- =================================================
+                     ENGAGEMENT
+                ================================================= -->
+
+                <article class="occasion-card">
+
+                    <div class="occasion-image">
+
+                        <img
+                            src="{% static 'images/exclusive-hindu.jpg' %}"
+                            alt="Engagement Invitation"
+                        >
+
+                        <a
+                            href="#"
+                            class="occasion-heart"
+                            aria-label="Engagement wishlist"
+                        >
+
+                            <i class="fa-regular fa-heart"></i>
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="occasion-content">
+
+                        <h3>
+                            Engagement Invitations
+                        </h3>
+
+                        <p>
+                            Sophisticated invitation cards
+                            for the beginning of a beautiful journey.
+                        </p>
+
+                        <a
+                            href="#"
+                            class="occasion-btn"
+                        >
+                            Explore
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- =================================================
+                     HOUSEWARMING
+                ================================================= -->
+
+                <article class="occasion-card">
+
+                    <div class="occasion-image">
+
+                        <img
+                            src="{% static 'images/theme-palace.jpg' %}"
+                            alt="Housewarming Invitation"
+                        >
+
+                        <a
+                            href="#"
+                            class="occasion-heart"
+                            aria-label="Housewarming wishlist"
+                        >
+
+                            <i class="fa-regular fa-heart"></i>
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="occasion-content">
+
+                        <h3>
+                            Housewarming Invitations
+                        </h3>
+
+                        <p>
+                            Traditional and modern designs
+                            for your new home celebration.
+                        </p>
+
+                        <a
+                            href="#"
+                            class="occasion-btn"
+                        >
+                            Explore
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- =================================================
+                     NAMING CEREMONY
+                ================================================= -->
+
+                <article class="occasion-card">
+
+                    <div class="occasion-image">
+
+                        <img
+                            src="{% static 'images/featured-luxury.jpg' %}"
+                            alt="Naming Ceremony Invitation"
+                        >
+
+                        <a
+                            href="#"
+                            class="occasion-heart"
+                            aria-label="Naming ceremony wishlist"
+                        >
+
+                            <i class="fa-regular fa-heart"></i>
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="occasion-content">
+
+                        <h3>
+                            Naming Ceremony
+                        </h3>
+
+                        <p>
+                            Graceful invitation designs
+                            for a precious family celebration.
+                        </p>
+
+                        <a
+                            href="#"
+                            class="occasion-btn"
+                        >
+                            Explore
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 FEATURES
+            ================================================= -->
+
+            <div class="feature-strip">
+
+                <div class="feature-grid">
+
+
+                    <!-- FEATURE 1 -->
+
+                    <div class="feature-item">
+
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                        <h4>
+                            Beautiful Designs
+                        </h4>
+
+                        <p>
+                            Carefully crafted invitation styles
+                        </p>
+
+                    </div>
+
+
+                    <!-- FEATURE 2 -->
+
+                    <div class="feature-item">
+
+                        <i class="fa-solid fa-pen-to-square"></i>
+
+                        <h4>
+                            Easy Customization
+                        </h4>
+
+                        <p>
+                            Personalize your invitation easily
+                        </p>
+
+                    </div>
+
+
+                    <!-- FEATURE 3 -->
+
+                    <div class="feature-item">
+
+                        <i class="fa-solid fa-shield-heart"></i>
+
+                        <h4>
+                            Premium Quality
+                        </h4>
+
+                        <p>
+                            Quality you can trust
+                        </p>
+
+                    </div>
+
+
+                    <!-- FEATURE 4 -->
+
+                    <div class="feature-item">
+
+                        <i class="fa-solid fa-truck-fast"></i>
+
+                        <h4>
+                            Reliable Delivery
+                        </h4>
+
+                        <p>
+                            Safe and timely delivery
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+</div>
+
+{% endblock %}

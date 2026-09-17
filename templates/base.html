@@ -1,0 +1,440 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}Wed Knot Craft{% endblock %}
+    </title>
+
+    <!-- ================= GOOGLE FONT ================= -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- ================= FONT AWESOME ================= -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- ================= MAIN CSS ================= -->
+    <link
+        rel="stylesheet"
+        href="{% static 'css/style.css' %}"
+    >
+
+    <!-- ================= RESPONSIVE CSS ================= -->
+    <link
+        rel="stylesheet"
+        href="{% static 'css/responsive.css' %}"
+    >
+
+    {% block extra_css %}{% endblock %}
+</head>
+
+
+<body>
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="site-header">
+
+    <!-- ================= TOP HEADER ================= -->
+
+    <div class="top-header container">
+
+        <!-- LOGO -->
+        <a href="{% url 'home' %}" class="logo">
+
+            <img
+                src="{% static 'images/logo.png' %}"
+                alt="Wed Knot Craft Logo"
+            >
+ <div class="logo-text">
+        <span class="brand-script">Cherish</span>
+        <span class="brand-script">By</span>
+        <span class="brand-name">Wed Knot Craft</span>
+    </div>
+        </a>
+
+
+        <!-- ================= SEARCH ================= -->
+
+        <form
+            class="search-box"
+            action="{% url 'product_search' %}"
+            method="GET"
+        >
+
+            <input
+                type="text"
+                name="q"
+                placeholder="Search..."
+                value="{{ request.GET.q|default:'' }}"
+            >
+
+            <button
+                type="submit"
+                aria-label="Search"
+            >
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+        </form>
+
+
+        <!-- ================= HEADER ACTIONS ================= -->
+
+        <div class="header-actions">
+
+            <!-- Account -->
+            <a
+                href="{% url 'login' %}"
+                class="header-icon"
+                title="Account"
+            >
+                <i class="fa-regular fa-user"></i>
+            </a>
+
+
+            <!-- Wishlist -->
+            <a
+                href="{% url 'wishlist' %}"
+                class="header-icon"
+                title="Wishlist"
+            >
+                <i class="fa-regular fa-heart"></i>
+            </a>
+
+
+            <!-- Cart -->
+            <a
+                href="{% url 'cart' %}"
+                class="header-icon cart-icon"
+                title="Cart"
+            >
+
+                <i class="fa-solid fa-cart-shopping"></i>
+
+                <span class="cart-count">
+                    {{ cart_count|default:0 }}
+                </span>
+
+            </a>
+
+
+            <!-- Mobile Menu -->
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                aria-label="Open Menu"
+            >
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= NAVIGATION ================= -->
+
+    <nav
+        class="main-nav"
+        id="mainNav"
+    >
+
+        <div class="container nav-container">
+
+            <a
+                href="{% url 'home' %}"
+                class="nav-link"
+            >
+                Home
+            </a>
+
+
+            <a
+                href="{% url 'wedding_invitations' %}"
+                class="nav-link"
+            >
+                Wedding Invitation
+            </a>
+
+
+            <a
+                href="{% url 'special_occasions' %}"
+                class="nav-link"
+            >
+                Special occasions
+            </a>
+
+
+            <a
+                href="{% url 'theme_cards' %}"
+                class="nav-link"
+            >
+                Theme Cards
+            </a>
+
+
+            <a
+                href="{% url 'scroll_invitations' %}"
+                class="nav-link"
+            >
+                Scroll Invitation
+            </a>
+
+
+            <a
+                href="{% url 'digital_invitations' %}"
+                class="nav-link"
+            >
+                Digital Invitation
+            </a>
+
+        </div>
+
+    </nav>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+<main>
+
+    <!-- Django Messages -->
+
+    {% if messages %}
+
+        <div class="messages container">
+
+            {% for message in messages %}
+
+                <div class="alert-message {{ message.tags }}">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% endif %}
+
+
+    <!-- Page Content -->
+
+    {% block content %}
+    {% endblock %}
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="site-footer">
+
+    <div class="container footer-grid">
+
+
+        <!-- ================= FOOTER BRAND ================= -->
+
+        <div class="footer-brand">
+
+            <!-- FOOTER LOGO -->
+
+            <a
+                href="{% url 'home' %}"
+                class="footer-logo"
+            >
+
+                <img
+                    src="{% static 'images/logo.png' %}"
+                    alt="Wed Knot Craft Logo"
+                >
+
+            </a>
+
+
+            <p>
+                Largest Wedding Cards Collections in Chennai
+            </p>
+
+
+            <!-- ================= SOCIAL LINKS ================= -->
+
+            <div class="social-links">
+
+                <a
+                    href="#"
+                    aria-label="Instagram"
+                >
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+
+
+                <a
+                    href="#"
+                    aria-label="Facebook"
+                >
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+
+
+                <a
+                    href="#"
+                    aria-label="YouTube"
+                >
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+
+
+                <a
+                    href="#"
+                    aria-label="WhatsApp"
+                >
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= INFORMATION ================= -->
+
+        <div class="footer-column">
+
+            <h3>
+                Information
+            </h3>
+
+
+            <a href="{% url 'about' %}">
+                About Us
+            </a>
+
+
+            <a href="{% url 'contact' %}">
+                Contact Us
+            </a>
+
+
+            <a href="{% url 'faq' %}">
+                FAQ
+            </a>
+
+
+            <a href="{% url 'faq' %}">
+                How to order wedding invitation online?
+            </a>
+
+        </div>
+
+
+        <!-- ================= QUICK ACCESS ================= -->
+
+        <div class="footer-column">
+
+            <h3>
+                Quick Access
+            </h3>
+
+
+            <a href="{% url 'home' %}">
+                Home
+            </a>
+
+
+            <a href="{% url 'wedding_invitations' %}">
+                Wedding Cards
+            </a>
+
+
+            <a href="{% url 'wedding_invitations' %}?category=hindu">
+                Hindu Wedding Cards
+            </a>
+
+        </div>
+
+
+        <!-- ================= CONTACT ================= -->
+
+        <div class="footer-column">
+
+            <h3>
+                Contact Us
+            </h3>
+
+
+            <p>
+                <i class="fa-solid fa-phone"></i>
+                +91 9876543210
+            </p>
+
+
+            <p>
+                <i class="fa-solid fa-envelope"></i>
+                wedtype@weddingcards.com
+            </p>
+
+
+            <p>
+                Operating hours:
+                10:00 AM to 10:00 PM
+            </p>
+
+
+            <p>
+                Monday - Sunday
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= FOOTER BOTTOM ================= -->
+
+    <div class="footer-bottom">
+
+        <p>
+            © Wed Knot Craft India Private Limited.
+            All Rights Reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- =====================================================
+     MAIN JAVASCRIPT
+===================================================== -->
+
+<script src="{% static 'js/main.js' %}"></script>
+
+
+{% block extra_js %}
+{% endblock %}
+
+
+</body>
+
+</html>

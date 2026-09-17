@@ -1,0 +1,1157 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Shopping Cart | Wed Knot Craft</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            color: #111;
+            background: #fff;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1400px;
+            margin: auto;
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .site-header {
+            background: #e6e6fa;
+        }
+
+        .top-header {
+            min-height: 140px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 30px;
+        }
+
+        .site-logo {
+            width: 230px;
+            flex-shrink: 0;
+        }
+
+        .site-logo img {
+            width: 210px;
+            height: auto;
+            display: block;
+        }
+
+        .search-box {
+            width: 500px;
+            height: 44px;
+
+            display: flex;
+            align-items: center;
+
+            background: #fff;
+
+            border: 1px solid #222;
+            border-radius: 6px;
+
+            overflow: hidden;
+        }
+
+        .search-box input {
+            flex: 1;
+            height: 100%;
+
+            padding: 0 15px;
+
+            border: none;
+            outline: none;
+
+            font-size: 13px;
+        }
+
+        .search-box button {
+            width: 50px;
+            height: 100%;
+
+            border: none;
+            background: transparent;
+
+            cursor: pointer;
+
+            font-size: 18px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-icon {
+            width: 38px;
+            height: 38px;
+
+            position: relative;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 21px;
+
+            transition: .3s ease;
+        }
+
+        .header-icon:hover {
+            color: #b77900;
+            transform: translateY(-2px);
+        }
+
+        .cart-count {
+            position: absolute;
+
+            top: -2px;
+            right: -2px;
+
+            width: 19px;
+            height: 19px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #ffab0d;
+
+            border-radius: 50%;
+
+            font-size: 9px;
+            font-weight: 600;
+        }
+
+
+        /* =====================================================
+           NAVIGATION
+        ===================================================== */
+
+        .main-nav {
+            border-top: 1px solid rgba(0,0,0,.04);
+        }
+
+        .nav-container {
+            min-height: 65px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 40px;
+        }
+
+        .nav-link {
+            font-size: 15px;
+            font-weight: 600;
+
+            white-space: nowrap;
+
+            transition: .3s ease;
+        }
+
+        .nav-link:hover {
+            color: #b77900;
+        }
+
+
+        /* =====================================================
+           CART PAGE
+        ===================================================== */
+
+        .cart-page {
+            min-height: 600px;
+
+            padding: 75px 0;
+
+            position: relative;
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 12% 20%,
+                    rgba(230,230,250,.85),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 88% 82%,
+                    rgba(255,229,180,.65),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #faf9ff,
+                    #ffffff
+                );
+        }
+
+        .cart-page::before {
+            content: "";
+
+            position: absolute;
+
+            width: 350px;
+            height: 350px;
+
+            top: -170px;
+            left: -120px;
+
+            border-radius: 50%;
+
+            background: rgba(230,230,250,.55);
+        }
+
+        .cart-page::after {
+            content: "";
+
+            position: absolute;
+
+            width: 330px;
+            height: 330px;
+
+            right: -130px;
+            bottom: -160px;
+
+            border-radius: 50%;
+
+            background: rgba(255,229,180,.5);
+        }
+
+
+        /* =====================================================
+           HEADING
+        ===================================================== */
+
+        .cart-heading {
+            position: relative;
+            z-index: 2;
+
+            text-align: center;
+
+            margin-bottom: 40px;
+        }
+
+        .cart-heading span {
+            color: #b77900;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            letter-spacing: 3px;
+        }
+
+        .cart-heading h1 {
+            margin: 8px 0;
+
+            font-size: 36px;
+            font-weight: 600;
+        }
+
+        .cart-heading p {
+            color: #777;
+            font-size: 13px;
+        }
+
+
+        /* =====================================================
+           EMPTY CART
+        ===================================================== */
+
+        .empty-cart {
+            width: 100%;
+            max-width: 800px;
+
+            margin: auto;
+
+            padding: 60px 45px;
+
+            position: relative;
+            z-index: 2;
+
+            text-align: center;
+
+            background: rgba(255,255,255,.96);
+
+            border: 1px solid #eee;
+
+            border-radius: 24px;
+
+            box-shadow:
+                0 25px 70px rgba(70,60,110,.12);
+        }
+
+        .cart-icon {
+            width: 100px;
+            height: 100px;
+
+            margin: 0 auto 25px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff0ca,
+                    #e9e7ff
+                );
+
+            color: #b77900;
+
+            font-size: 40px;
+
+            box-shadow:
+                0 15px 35px rgba(70,60,110,.10);
+        }
+
+        .empty-cart h2 {
+            margin-bottom: 12px;
+
+            font-size: 30px;
+            font-weight: 600;
+        }
+
+        .empty-cart p {
+            max-width: 570px;
+
+            margin: 0 auto;
+
+            color: #777;
+
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+
+        /* =====================================================
+           BUTTONS
+        ===================================================== */
+
+        .cart-actions {
+            margin-top: 30px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+        }
+
+        .cart-btn {
+            min-width: 180px;
+
+            padding: 12px 22px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 8px;
+
+            border-radius: 7px;
+
+            font-size: 11px;
+            font-weight: 600;
+
+            transition: .3s ease;
+        }
+
+        .cart-btn.primary {
+            background: #ffab0d;
+
+            border: 1px solid #ffab0d;
+        }
+
+        .cart-btn.primary:hover {
+            background: #e49a00;
+            border-color: #e49a00;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 22px rgba(255,171,13,.22);
+        }
+
+        .cart-btn.secondary {
+            background: #fff;
+
+            border: 1px solid #222;
+        }
+
+        .cart-btn.secondary:hover {
+            background: #111;
+            color: #fff;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =====================================================
+           FEATURES
+        ===================================================== */
+
+        .cart-features {
+            max-width: 800px;
+
+            margin: 28px auto 0;
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 15px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .cart-feature {
+            padding: 22px 15px;
+
+            text-align: center;
+
+            background: rgba(255,255,255,.92);
+
+            border: 1px solid #eee;
+
+            border-radius: 12px;
+
+            transition: .3s ease;
+        }
+
+        .cart-feature:hover {
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 12px 25px rgba(0,0,0,.07);
+        }
+
+        .cart-feature i {
+            margin-bottom: 9px;
+
+            color: #b77900;
+
+            font-size: 21px;
+        }
+
+        .cart-feature h4 {
+            margin-bottom: 5px;
+
+            font-size: 12px;
+        }
+
+        .cart-feature p {
+            color: #777;
+
+            font-size: 10px;
+            line-height: 1.5;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .site-footer {
+            background: #ffe5b4;
+        }
+
+        .footer-grid {
+            min-height: 240px;
+
+            display: grid;
+
+            grid-template-columns:
+                1.2fr
+                1.6fr
+                1.4fr
+                1.7fr;
+
+            gap: 40px;
+
+            padding: 30px 0;
+        }
+
+        .site-footer-logo img {
+            width: 125px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .footer-brand p {
+            font-size: 11px;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 15px;
+            font-size: 19px;
+        }
+
+        .footer-column a {
+            margin-bottom: 9px;
+            font-size: 11px;
+        }
+
+        .footer-column a:hover {
+            color: #a66d00;
+        }
+
+        .footer-column p {
+            margin-bottom: 9px;
+            font-size: 11px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 9px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 31px;
+            height: 31px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #fff;
+
+            border-radius: 50%;
+
+            font-size: 13px;
+
+            transition: .3s ease;
+        }
+
+        .social-links a:hover {
+            background: #ffab0d;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            min-height: 50px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-top:
+                1px solid rgba(0,0,0,.25);
+        }
+
+        .footer-bottom p {
+            font-size: 10px;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 1000px) {
+
+            .search-box {
+                width: 350px;
+            }
+
+            .nav-container {
+                gap: 25px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+
+        @media (max-width: 750px) {
+
+            .top-header {
+                flex-wrap: wrap;
+                padding: 20px 0;
+            }
+
+            .site-logo {
+                width: 160px;
+            }
+
+            .site-logo img {
+                width: 150px;
+            }
+
+            .search-box {
+                order: 3;
+                width: 100%;
+            }
+
+            .nav-container {
+                flex-wrap: wrap;
+                gap: 15px 22px;
+                padding: 15px 0;
+            }
+
+            .nav-link {
+                font-size: 12px;
+            }
+
+            .cart-page {
+                padding: 55px 0;
+            }
+
+            .empty-cart {
+                padding: 50px 30px;
+            }
+
+            .cart-heading h1 {
+                font-size: 31px;
+            }
+        }
+
+
+        @media (max-width: 550px) {
+
+            .container {
+                width: 94%;
+            }
+
+            .header-actions {
+                gap: 8px;
+            }
+
+            .cart-page {
+                padding: 45px 0;
+            }
+
+            .empty-cart {
+                padding: 40px 20px;
+                border-radius: 18px;
+            }
+
+            .cart-icon {
+                width: 82px;
+                height: 82px;
+                font-size: 32px;
+            }
+
+            .empty-cart h2 {
+                font-size: 26px;
+            }
+
+            .empty-cart p {
+                font-size: 12px;
+            }
+
+            .cart-actions {
+                flex-direction: column;
+            }
+
+            .cart-btn {
+                width: 100%;
+            }
+
+            .cart-features {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         HEADER
+    ===================================================== -->
+
+    <header class="site-header">
+
+        <div class="top-header container">
+
+
+            <a
+                href="{% url 'home' %}"
+                class="site-logo"
+            >
+
+                <img
+                    src="{% static 'images/logo.png' %}"
+                    alt="Wed Knot Craft"
+                >
+
+            </a>
+
+
+            <form
+                class="search-box"
+                action="{% url 'product_search' %}"
+                method="GET"
+            >
+
+                <input
+                    type="text"
+                    name="q"
+                    placeholder="Search..."
+                >
+
+                <button type="submit">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                </button>
+
+            </form>
+
+
+            <div class="header-actions">
+
+
+                <a
+                    href="{% url 'login' %}"
+                    class="header-icon"
+                >
+
+                    <i class="fa-regular fa-user"></i>
+
+                </a>
+
+
+                <a
+                    href="{% url 'wishlist' %}"
+                    class="header-icon"
+                >
+
+                    <i class="fa-regular fa-heart"></i>
+
+                </a>
+
+
+                <a
+                    href="{% url 'cart' %}"
+                    class="header-icon"
+                >
+
+                    <i class="fa-solid fa-cart-shopping"></i>
+
+                    <span class="cart-count">
+                        {{ cart_count|default:0 }}
+                    </span>
+
+                </a>
+
+
+            </div>
+
+        </div>
+
+
+        <nav class="main-nav">
+
+            <div class="container nav-container">
+
+
+                <a
+                    href="{% url 'home' %}"
+                    class="nav-link"
+                >
+                    Home
+                </a>
+
+
+                <a
+                    href="{% url 'wedding_invitations' %}"
+                    class="nav-link"
+                >
+                    Wedding Invitation
+                </a>
+
+
+                <a
+                    href="{% url 'special_occasions' %}"
+                    class="nav-link"
+                >
+                    Special occasions
+                </a>
+
+
+                <a
+                    href="{% url 'theme_cards' %}"
+                    class="nav-link"
+                >
+                    Theme Cards
+                </a>
+
+
+                <a
+                    href="{% url 'scroll_invitations' %}"
+                    class="nav-link"
+                >
+                    Scroll Invitation
+                </a>
+
+
+                <a
+                    href="{% url 'digital_invitations' %}"
+                    class="nav-link"
+                >
+                    Digital Invitation
+                </a>
+
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =====================================================
+         CART
+    ===================================================== -->
+
+    <main>
+
+        <section class="cart-page">
+
+            <div class="container">
+
+
+                <div class="cart-heading">
+
+                    <span>
+                        SHOPPING BAG
+                    </span>
+
+                    <h1>
+                        Your Cart
+                    </h1>
+
+                    <p>
+                        Review your favourite invitation designs
+                        before placing your order.
+                    </p>
+
+                </div>
+
+
+                <div class="empty-cart">
+
+
+                    <div class="cart-icon">
+
+                        <i class="fa-solid fa-cart-shopping"></i>
+
+                    </div>
+
+
+                    <h2>
+                        Your Cart is Empty
+                    </h2>
+
+
+                    <p>
+                        Looks like you haven't added any invitation
+                        designs to your cart yet. Explore our beautiful
+                        collections and find the perfect invitation
+                        for your celebration.
+                    </p>
+
+
+                    <div class="cart-actions">
+
+                        <a
+                            href="{% url 'wedding_invitations' %}"
+                            class="cart-btn primary"
+                        >
+
+                            <i class="fa-solid fa-heart"></i>
+
+                            Explore Wedding Cards
+
+                        </a>
+
+
+                        <a
+                            href="{% url 'digital_invitations' %}"
+                            class="cart-btn secondary"
+                        >
+
+                            <i class="fa-solid fa-mobile-screen"></i>
+
+                            Digital Invitations
+
+                        </a>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="cart-features">
+
+
+                    <div class="cart-feature">
+
+                        <i class="fa-solid fa-shield-halved"></i>
+
+                        <h4>
+                            Secure Checkout
+                        </h4>
+
+                        <p>
+                            Your order details are handled securely.
+                        </p>
+
+                    </div>
+
+
+                    <div class="cart-feature">
+
+                        <i class="fa-solid fa-pen-nib"></i>
+
+                        <h4>
+                            Personalize
+                        </h4>
+
+                        <p>
+                            Create an invitation that feels yours.
+                        </p>
+
+                    </div>
+
+
+                    <div class="cart-feature">
+
+                        <i class="fa-solid fa-gift"></i>
+
+                        <h4>
+                            Beautiful Designs
+                        </h4>
+
+                        <p>
+                            Choose from elegant invitation collections.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
+
+    <footer class="site-footer">
+
+        <div class="container footer-grid">
+
+
+            <div class="footer-brand">
+
+                <a
+                    href="{% url 'home' %}"
+                    class="site-footer-logo"
+                >
+
+                    <img
+                        src="{% static 'images/logo.png' %}"
+                        alt="Wed Knot Craft"
+                    >
+
+                </a>
+
+                <p>
+                    Largest Wedding<br>
+                    Cards Collections in<br>
+                    Chennai
+                </p>
+
+
+                <div class="social-links">
+
+                    <a href="#">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Information
+                </h3>
+
+                <a href="{% url 'about' %}">
+                    About Us
+                </a>
+
+                <a href="{% url 'contact' %}">
+                    Contact Us
+                </a>
+
+                <a href="{% url 'faq' %}">
+                    FAQ
+                </a>
+
+                <a href="{% url 'faq' %}">
+                    How to order wedding invitation online?
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Quick Access
+                </h3>
+
+                <a href="{% url 'home' %}">
+                    Home
+                </a>
+
+                <a href="{% url 'wedding_invitations' %}">
+                    Wedding Cards
+                </a>
+
+                <a href="{% url 'wedding_invitations' %}?category=hindu">
+                    Hindu Wedding Cards
+                </a>
+
+                <a href="{% url 'digital_invitations' %}">
+                    Digital Invitations
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Contact Us
+                </h3>
+
+                <p>
+                    <i class="fa-solid fa-phone"></i>
+                    &nbsp; +91 9876543210
+                </p>
+
+                <p>
+                    <i class="fa-regular fa-envelope"></i>
+                    &nbsp; wedtype@weddingcards.com
+                </p>
+
+                <p>
+                    Operating hours: 10:00 AM to 10:00 PM
+                </p>
+
+                <p>
+                    Monday - Sunday
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © Wed Knot Craft India Private Limited.
+                All Rights Reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+</body>
+
+</html>
